@@ -1,6 +1,12 @@
-#include <iostream>
+#include "Magasin.h"
 
 int main()
 {
-    std::cout << "Hello world" << std::endl;
+	Magasin magasin("EasyStock");
+
+
+
+
+	return 0;
+
 }
