@@ -1,6 +1,11 @@
 #include "Client.h"
 #include <iostream>
 
+Client::Client(int id, std::string prenom, std::string nom) :
+	_id(id), _prenom(prenom), _nom(nom) {
+
+}
+
 int Client::getId() const {
 	return _id;
 }
@@ -21,11 +26,23 @@ void Client::ajouterProduitPanier(Produit produit) {
     _panier.push_back(produit);
 }
 
+void Client::viderPanier() {
+    _panier.clear();
+}
+
+void Client::modifierQuantiteProduit(Produit produit, int quantite) {
+    //TODO
+}
+
+void Client::supprimerProduitPanier(Produit produit) {
+    //TODO
+}
+
 std::ostream& operator<<(std::ostream& os, const Client& client)
 {
-    os << "Fiche client n°" << client.getId();
-	os << "Prénom et nom : " << client.getPrenom() << " " << client.getNom();
-    os << "Panier :";
+    os << "Fiche client - Numero " << client.getId() << std::endl;
+	os << "Prenom et nom : " << client.getPrenom() << " " << client.getNom() << std::endl;
+    os << "Panier :" << std::endl;
     if (client.getPanier().empty())
         os << "Vide";
     else {
