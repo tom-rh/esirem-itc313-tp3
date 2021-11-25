@@ -6,7 +6,7 @@ class Produit
 
 private:
 
-	std::string _produit;
+	std::string _nomProduit;
 	std::string _description;
 	double _qtite;
 	float _prix;
