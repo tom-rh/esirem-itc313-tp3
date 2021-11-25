@@ -4,7 +4,6 @@ Magasin::Magasin(std::string name) : _namemagasin(name) {
 
 }
 
-
 void Magasin::addProduit(Produit _produit){
 	_produits.push_back(_produit);
 }
@@ -16,8 +15,7 @@ void Magasin::afficheMagasin(std::vector<Produit> _produits) {
     }
 }
 
-
-void Magasin::findProduit(std::vector<Produit> _produits,std::string _recherche) const {
+void Magasin::trouverProduit(std::vector<Produit> _produits,std::string _recherche) const {
 	for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == _recherche)
 		{
@@ -26,11 +24,11 @@ void Magasin::findProduit(std::vector<Produit> _produits,std::string _recherche)
 	}
 }
 
-void Magasin::changeQtite(std::vector<Produit> _produits, int _qtite,std::string _recherche){
+void Magasin::changerQuantite(std::vector<Produit> _produits, int _quantite,std::string _recherche){
    for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == _recherche)
 		{
-			_produits.at(i).setQuantite(_produits.at(i).getQuantite()+_qtite);
+			_produits.at(i).setQuantite(_produits.at(i).getQuantite()+_quantite);
 		}
     }
 }
