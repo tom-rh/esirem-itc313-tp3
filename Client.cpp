@@ -30,7 +30,12 @@ void Client::viderPanier() {
 }
 
 void Client::modifierQuantiteProduitPanier(Produit produit, int quantite) {
-    //TODO
+	for (std::vector<Produit>::iterator it = _panier.begin() ; it != _panier.end(); ++it) {
+		if (produit.getId() == (*it).getId()) {
+				(*it).setQuantite(quantite);
+			break;
+		}
+	}
 }
 
 void Client::supprimerProduitPanier(Produit produit) {
@@ -45,8 +50,9 @@ std::ostream& operator<<(std::ostream& os, const Client& client)
     if (client.getPanier().empty())
         os << "Vide" << std::endl;
     else {
-        for (Produit i: client.getPanier())
-            os << i << ' ' << std::endl;
+        for (std::vector<Produit>::iterator it = client.getPanier().begin() ; it != client.getPanier().end(); ++it) {
+			os << *it << std::endl;
+		}
     }
 	return os;
 
