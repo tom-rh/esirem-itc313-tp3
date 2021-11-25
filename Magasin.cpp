@@ -19,16 +19,31 @@ void Magasin::afficheMagasin(std::vector<Produit> _produits) {
 }
 
 
-std::string Magasin::findProduit(std::vector<Produit> _produits) const {
-
-        std::string _recherche;
-        std::cin >> _recherche;
+void Magasin::findProduit(std::vector<Produit> _produits,std::string _recherche) const {
 
         for (int i=0; i < _produits.size(); i++) {
            
             if ( _produits.at(i).getNameProduit() == _recherche)
             {
                 std::cout << _produits.at(i) << std::endl;
+               
             }
+
+        }
+}
+
+void Magasin::changeQtite(std::vector<Produit> _produits, int _qtite,std::string _recherche){
+
+double max;
+
+   for (int i=0; i < _produits.size(); i++) {
+           
+            if ( _produits.at(i).getNameProduit() == _recherche)
+            {
+               max=_produits.at(i).getQtite();
+               _produits.at(i).setQtite(max+_qtite);
+
+            }
+
         }
 }
