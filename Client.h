@@ -16,4 +16,5 @@ public:
     std::string getNom() const;
     std::vector<Produit> getPanier() const;
     void ajouterProduitPanier(Produit produit);
-};
+
+std::ostream& operator<<(std::ostream& os, const Client& client);
