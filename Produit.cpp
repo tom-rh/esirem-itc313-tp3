@@ -2,7 +2,7 @@
 #include <iostream>
 
 Produit::Produit(std::string produit, int id, std::string description, int qtite, float prix) :
-	_nomProduit(produit), _id(id), _description(description), _qtite(qtite), _prix(prix)
+	_nomProduit(produit), _id(id), _description(description), _quantite(qtite), _prix(prix)
 {
 
 
@@ -26,9 +26,9 @@ void Produit::setId(int id) {
 	_id = id;
 }
 
-void Produit::setQtite(int qtite) {
+void Produit::setQuantite(int quantite) {
 
-	_qtite = qtite;
+	_quantite = quantite;
 }
 
 void Produit::setPrix(float prix) {
@@ -49,8 +49,8 @@ int Produit::getId() const {
 	return _id;
 }
 
-int Produit::getQtite() const {
-	return _qtite;
+int Produit::getQuantite() const {
+	return _quantite;
 }
 
 float Produit::getPrix() const {

@@ -3,34 +3,25 @@
 
 class Produit
 {
-
 private:
-
+	int _id;
 	std::string _nomProduit;
 	std::string _description;
-	double _qtite;
+	int _quantite;
 	float _prix;
-	double _id;
-
-
 public:
+	Produit(std::string _produit, int _id, std::string _description, int _quantite, float _prix);
+	void setProduit(std::string _produit);
+	void setDescription(std::string _description);
+	void setId(int _id);
+	void setQuantite(int _quantite);
+	void setPrix(float _prix);
 
-	Produit(std::string _produit, int _id, std::string _description, int _qtite, float _prix);
-
-
-		void setProduit(std::string _produit);
-		void setDescription(std::string _description);
-		void setId(int _id);
-		void setQtite(int _qtite);
-		void setPrix(float _prix);
-
-		std::string getNameProduit() const;
-		std::string getDescription() const;
-		int getId() const;
-		int getQtite() const;
-		float getPrix() const;
-
-	
+	std::string getNameProduit() const;
+	std::string getDescription() const;
+	int getId() const;
+	int getQuantite() const;
+	float getPrix() const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Produit& produit);
