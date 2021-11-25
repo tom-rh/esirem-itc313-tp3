@@ -25,8 +25,8 @@ std::string Magasin::findProduit(std::vector<Produit> _produits) const {
         std::cin >> _recherche;
 
         for (int i=0; i < _produits.size(); i++) {
-            std::string nomProduit = _produits.at(i).getProduit();
-            if ( nomProduit == _recherche)
+           
+            if ( _produits.at(i).getNameProduit() == _recherche)
             {
                 std::cout << _produits.at(i) << std::endl;
             }
