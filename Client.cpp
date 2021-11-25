@@ -15,3 +15,7 @@ std::string Client::getNom() const {
 std::vector<Produit> Client::getPanier() const {
     return _panier;
 }
+
+void Client::ajouterProduit(Produit produit) {
+    _panier.push_back(produit);
+}
