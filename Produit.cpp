@@ -1,7 +1,7 @@
 #include "Produit.h"
 #include <iostream>
 
-Produit::Produit(std::string produit, double id, std::string description, double qtite, float prix) :
+Produit::Produit(std::string produit, int id, std::string description, int qtite, float prix) :
 	_nomProduit(produit), _id(id), _description(description), _qtite(qtite), _prix(prix)
 {
 
@@ -21,12 +21,12 @@ void Produit::setDescription(std::string description) {
 }
 
 
-void Produit::setId(double id) {
+void Produit::setId(int id) {
 
 	_id = id;
 }
 
-void Produit::setQtite(double qtite) {
+void Produit::setQtite(int qtite) {
 
 	_qtite = qtite;
 }
@@ -45,11 +45,11 @@ std::string Produit::getDescription() const {
 	return _description;
 }
 
-double Produit::getId() const {
+int Produit::getId() const {
 	return _id;
 }
 
-double Produit::getQtite() const {
+int Produit::getQtite() const {
 	return _qtite;
 }
 
