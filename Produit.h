@@ -24,7 +24,7 @@ public:
 		void setQtite(double _qtite);
 		void setPrix(float _prix);
 
-		std::string getProduit() const;
+		std::string getNameProduit() const;
 		std::string getDescription() const;
 		double getId() const;
 		double getQtite() const;

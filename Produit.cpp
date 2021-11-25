@@ -37,7 +37,7 @@ void Produit::setPrix(float prix) {
 }
 
 
-std::string Produit::getProduit() const {
+std::string Produit::getNameProduit() const {
 	return _produit;
 }
 
@@ -59,7 +59,7 @@ float Produit::getPrix() const {
 
 std::ostream& operator<<(std::ostream& os, const Produit& produit)
 {
-	os << produit.getProduit() << " " << produit.getId() << " " << produit.getDescription() << " " << produit.getQtite() << " " << produit.getPrix();
+	os << produit.getNameProduit() << " " << produit.getId() << " " << produit.getDescription() << " " << produit.getQtite() << " " << produit.getPrix();
 	return os;
 
 }
