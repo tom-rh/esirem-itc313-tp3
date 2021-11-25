@@ -1,4 +1,5 @@
 #include "Produit.h"
+#include <iostream>
 
 Produit::Produit(std::string produit, double id, std::string description, double qtite, float prix) :
 	_produit(produit), _id(id), _description(description), _qtite(qtite), _prix(prix)
