@@ -19,7 +19,7 @@ public:
     std::vector<Produit> getPanier() const;
     void ajouterProduitPanier(Produit produit);
     void viderPanier();
-    void modifierQuantiteProduit(Produit produit, int quantite);
+    void modifierQuantiteProduitPanier(Produit produit, int quantite);
     void supprimerProduitPanier(Produit produit);
 };
 
