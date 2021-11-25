@@ -10,7 +10,7 @@ private:
 	int _quantite;
 	float _prix;
 public:
-	Produit(std::string _produit, int _id, std::string _description, int _quantite, float _prix);
+	Produit(int id, std::string nomProduit, std::string description, int qtite, float prix);
 	void setProduit(std::string _produit);
 	void setDescription(std::string _description);
 	void setId(int _id);
