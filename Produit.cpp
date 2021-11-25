@@ -59,7 +59,11 @@ float Produit::getPrix() const {
 
 std::ostream& operator<<(std::ostream& os, const Produit& produit)
 {
-	os << produit.getNameProduit() << " " << produit.getId() << " " << produit.getDescription() << " " << produit.getQtite() << " " << produit.getPrix();
+	os << "Fiche produit" << std::endl;
+	os << "Id : " << produit.getId() << std::endl;
+	os << "Nom : " << produit.getNameProduit() << std::endl;
+	os << "Description : " << produit.getDescription() << std::endl;
+	os << "Quantite : " << produit.getQuantite() << std::endl;
+	os << "Prix : " << produit.getPrix() << std::endl;
 	return os;
-
 }
