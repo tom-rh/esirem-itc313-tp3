@@ -72,3 +72,17 @@ void Magasin::addProduitToPanier(Produit _produit,Client _client){
 
 	_client.ajouterProduitPanier(_produit);
 }
+
+
+void Magasin::suprProduitToPanier(Produit _produit,Client _client){
+
+	_client.supprimerProduitPanier(_produit);
+}
+
+
+void Magasin::qtitProduitToPanier(Produit _produit,Client _client,int qtit){
+
+	_client.modifierQuantiteProduitPanier(_produit, qtit);
+}
+
+

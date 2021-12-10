@@ -22,6 +22,8 @@ public :
 	void afficheClient(std::vector<Client> _clients);
 	void trouverClient(std::vector<Client> _clients, std::string _recherche) const;
 	void addProduitToPanier(Produit _produit,Client _client);
+	void suprProduitToPanier(Produit _produit,Client _client);
+	void qtitProduitToPanier(Produit _produit,Client _client, int qtit);
 
 };
 
