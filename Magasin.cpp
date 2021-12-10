@@ -32,3 +32,38 @@ void Magasin::changerQuantite(std::vector<Produit> _produits, int _quantite,std:
 		}
     }
 }
+
+
+void Magasin::addClient(Client _client){
+	_clients.push_back(_client);
+}
+
+
+void Magasin::afficheClient(std::vector<Client> _clients) {
+    for (int i=0; i < _clients.size(); i++)
+    {
+        std::cout << _clients.at(i) << std::endl;
+    }
+}
+
+
+void Magasin::trouverClient(std::vector<Client> _clients,std::string _recherche) const {
+
+	int rch;
+
+	for (int i=0; i < _clients.size(); i++) {
+		if ( _clients.at(i).getNom() == _recherche)
+		{
+			std::cout << _produits.at(i) << std::endl;
+		}
+		
+		else if (_clients.at(i).getId() == (rch=std::stoi(_recherche)))
+		{
+			std::cout << _produits.at(i) << std::endl;
+		}
+
+		else{
+			std::cout << "aucun client correspondant" << std::endl;
+		}
+}
+}
