@@ -14,7 +14,6 @@ private :
 
 public :
 	Magasin(std::string _namemagasin);
-	std::vector<Produit> Magasin::getProduits() const;
 	void addProduit(Produit _produit);
 	void afficheMagasin();
 	void trouverProduit(std::string _recherche) const;

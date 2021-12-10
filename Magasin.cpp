@@ -8,14 +8,14 @@ void Magasin::addProduit(Produit _produit){
 	_produits.push_back(_produit);
 }
 
-void Magasin::afficheMagasin(std::vector<Produit> _produits) {
+void Magasin::afficheMagasin() {
     for (int i=0; i < _produits.size(); i++)
     {
         std::cout << _produits.at(i) << std::endl;
     }
 }
 
-void Magasin::trouverProduit(std::vector<Produit> _produits,std::string _recherche) const {
+void Magasin::trouverProduit(std::string _recherche) const {
 	for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == _recherche)
 		{
@@ -24,7 +24,7 @@ void Magasin::trouverProduit(std::vector<Produit> _produits,std::string _recherc
 	}
 }
 
-void Magasin::changerQuantite(std::vector<Produit> _produits, int _quantite,std::string _recherche){
+void Magasin::changerQuantite(int _quantite,std::string _recherche){
    for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == _recherche)
 		{
@@ -32,7 +32,6 @@ void Magasin::changerQuantite(std::vector<Produit> _produits, int _quantite,std:
 		}
     }
 }
-
 
 void Magasin::addClient(Client _client){
 	_clients.push_back(_client);
