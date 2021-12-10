@@ -14,4 +14,4 @@ public:
     int getStatut() const;
 };
 
-std::ostream& operator<<(std::ostream& os, const Client& client);
+std::ostream& operator<<(std::ostream& os, const Commande& commande);
