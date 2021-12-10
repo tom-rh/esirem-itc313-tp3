@@ -11,9 +11,10 @@ private :
 	std::vector<Produit> _produits;
 public :
 	Magasin(std::string _namemagasin);
+	std::vector<Produit> getProduits() const;
 	void addProduit(Produit _produit);
-	void afficheMagasin(std::vector<Produit> _produits);
-	void trouverProduit(std::vector<Produit> _produits, std::string _recherche) const;
-	void changerQuantite(std::vector<Produit> _produits, int _quantite, std::string _recherche);
+	void afficheMagasin();
+	void trouverProduit(std::string _recherche) const;
+	void changerQuantite(int _quantite, std::string _recherche);
 };
 
