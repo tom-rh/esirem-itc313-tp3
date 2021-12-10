@@ -14,10 +14,11 @@ private :
 
 public :
 	Magasin(std::string _namemagasin);
+	std::vector<Produit> Magasin::getProduits() const;
 	void addProduit(Produit _produit);
-	void afficheMagasin(std::vector<Produit> _produits);
-	void trouverProduit(std::vector<Produit> _produits, std::string _recherche) const;
-	void changerQuantite(std::vector<Produit> _produits, int _quantite, std::string _recherche);
+	void afficheMagasin();
+	void trouverProduit(std::string _recherche) const;
+	void changerQuantite(int _quantite, std::string _recherche);
 	void addClient(Client _client);
 	void afficheClient(std::vector<Client> _clients);
 	void trouverClient(std::vector<Client> _clients, std::string _recherche) const;
