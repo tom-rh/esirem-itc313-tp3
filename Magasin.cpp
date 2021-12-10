@@ -4,22 +4,18 @@ Magasin::Magasin(std::string name) : _namemagasin(name) {
 
 }
 
-std::vector<Produit> Magasin::getProduits() const {
-	return _produits;
-}
-
 void Magasin::addProduit(Produit _produit){
 	_produits.push_back(_produit);
 }
 
-void Magasin::afficheMagasin() {
+void Magasin::afficheMagasin(std::vector<Produit> _produits) {
     for (int i=0; i < _produits.size(); i++)
     {
         std::cout << _produits.at(i) << std::endl;
     }
 }
 
-void Magasin::trouverProduit(std::string _recherche) const {
+void Magasin::trouverProduit(std::vector<Produit> _produits,std::string _recherche) const {
 	for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == _recherche)
 		{
@@ -28,7 +24,7 @@ void Magasin::trouverProduit(std::string _recherche) const {
 	}
 }
 
-void Magasin::changerQuantite(int _quantite,std::string _recherche){
+void Magasin::changerQuantite(std::vector<Produit> _produits, int _quantite,std::string _recherche){
    for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == _recherche)
 		{
@@ -70,4 +66,10 @@ void Magasin::trouverClient(std::vector<Client> _clients,std::string _recherche)
 			std::cout << "aucun client correspondant" << std::endl;
 		}
 }
+}
+
+
+void Magasin::addProduitToPanier(Produit _produit,Client _client){
+
+	_client.ajouterProduitPanier(_produit);
 }
