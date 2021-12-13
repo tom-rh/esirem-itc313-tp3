@@ -159,7 +159,6 @@ void gestionMagasin()
 
 		case 0:
 		clear();
-    
    		 break;
 		
   default:
@@ -171,11 +170,18 @@ void gestionMagasin()
 }
 
 
-int Menu()
+int main()
 {
+	bool exit = true;
+
+
+
+
+
+	do{
 	std::cout << "...................................................................................................." << std::endl;
 	std::cout << ".		Bienvenu dans le Magasin EasyStock                                                           ." << std::endl;
-	std::cout << ".		Pour naviguer dans le menu il suffit d'appuyer sur les touches du pavé numérique             ." << std::endl;
+	std::cout << ".		Pour naviguer dans le menu il suffit d'appuyer sur les touches du pave numerique             ." << std::endl;
 	std::cout << ".		                                                                                             ." << std::endl;
 	std::cout << ".		1 - Gestion du Magasin                                                                       ." << std::endl;
 	std::cout << ".		2 - Gestion des Utilisateurs                                                                 ." << std::endl;
@@ -205,23 +211,9 @@ int Menu()
 
   default:
 		 return 0;
-   
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-int main()
-{
-	Menu();
+	}	
+	}while(exit==true);
+	
 	return 0;
 
 }
