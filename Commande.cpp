@@ -1,6 +1,12 @@
 #include "Commande.h"
 #include <iostream>
 
+Commande::Commande(Client client, std::vector<Produit> produitsAchetes) :
+	_client(client), _produitsAchetes(produitsAchetes)
+{
+
+}
+
 Client Commande::getClient() const {
     return _client;
 }

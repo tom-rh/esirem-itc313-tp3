@@ -9,6 +9,7 @@ private:
     std::vector<Produit> _produitsAchetes;
     int _statut;
 public:
+    Commande::Commande(Client client, std::vector<Produit> produitsAchetes);
     Client getClient() const;
     std::vector<Produit> getProduitsAchetes() const;
     int getStatut() const;
