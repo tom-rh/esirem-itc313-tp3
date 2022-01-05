@@ -19,9 +19,31 @@ int Commande::getStatut() const{
     return _statut;
 }
 
+std::string Commande::showStatut() const{
+    switch (_statut)
+    {
+    case 0:
+        return "Validée";
+        break;
+    case 1:
+        return "Préparée";
+        break;
+    case 2:
+        return "Expédiée";
+        break;
+    case 3:
+        return "Livrée";
+        break;
+    default:
+        return "Erreur";
+        break;
+    }
+}
+
 std::ostream& operator<<(std::ostream& os, const Commande& commande)
 {
     os << "Commande :" << std::endl;
+    os << "Statut :" << commande.getStatut() << std::endl;
 	os << "Client : " << commande.getClient() << std::endl;
     os << "Produits achetés : " << std::endl;
     for (auto i = 0; i != commande.getProduitsAchetes().size(); i++) {
