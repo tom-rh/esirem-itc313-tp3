@@ -72,9 +72,10 @@ void Magasin::qtitProduitToPanier(Produit _produit,Client _client,int qtit){
 	_client.modifierQuantiteProduitPanier(_produit, qtit);
 }
 
-bool Magasin::validerCommande(Commande _commande) {
+bool Magasin::validerCommande(Client _client) {
 	// TODO
-	_commande.getClient().viderPanier();
+	_commandes.push_back(Commande(_client, _client.getPanier()));
+	_client.viderPanier();
 }
 
 bool Magasin::setStatutCommande(Commande _commande, int _statut) {

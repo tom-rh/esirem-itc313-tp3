@@ -26,7 +26,7 @@ public :
 	void addProduitToPanier(Produit _produit,Client _client);
 	void suprProduitToPanier(Produit _produit,Client _client);
 	void qtitProduitToPanier(Produit _produit,Client _client, int qtit);
-	bool validerCommande(Commande _commande);
+	bool validerCommande(Client _client);
 	bool setStatutCommande(Commande _commande, int _statut);
 	void afficheCommandes() const;
 	void afficheCommandesClient(Client _client) const;
