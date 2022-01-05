@@ -45,16 +45,13 @@ void Magasin::afficheClient() {
 }
 
 void Magasin::trouverClient(std::string _recherche) const {
-
-	int rch;
-
 	for (int i=0; i < _clients.size(); i++) {
 		if ( _clients.at(i).getNom() == _recherche)
 			std::cout << _produits.at(i) << std::endl;
-		else if (_clients.at(i).getId() == (rch=std::stoi(_recherche)))
+		else if (_clients.at(i).getId() == std::stoi(_recherche))
 			std::cout << _produits.at(i) << std::endl;
 		else
-			std::cout << "aucun client correspondant" << std::endl;
+			std::cout << "Aucun client trouve !" << std::endl;
 	}
 }
 
@@ -73,15 +70,23 @@ void Magasin::qtitProduitToPanier(Produit _produit,Client _client,int qtit){
 }
 
 bool Magasin::validerCommande(Client _client) {
-	// TODO
+	// TODO Diminuer la quantité du  produit dans le magasin
 	_commandes.push_back(Commande(_client, _client.getPanier()));
 	_client.viderPanier();
 }
 
 bool Magasin::setStatutCommande(Commande _commande, int _statut) {
-	for (auto i = 0; i != _commandes.size(); i++) {
-		// TODO
-    }
+	if (_statut <= 4 && _statut >=0) {
+		for (auto i = 0; i != _commandes.size(); i++) {
+			/*if (i == _commandes.at(i)) {
+				// TODO
+				return true;
+			}*/
+    	}
+	} 
+	else {
+		return false;
+	}
 }
 
 void Magasin::afficheCommandes() const {
