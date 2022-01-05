@@ -19,7 +19,7 @@ int Commande::getStatut() const{
     return _statut;
 }
 
-std::string Commande::showStatut() const{
+std::string Commande::getDescriptionStatut() const{
     switch (_statut)
     {
     case 0:
@@ -43,9 +43,9 @@ std::string Commande::showStatut() const{
 std::ostream& operator<<(std::ostream& os, const Commande& commande)
 {
     os << "Commande :" << std::endl;
-    os << "Statut :" << commande.getStatut() << std::endl;
+    os << "Statut :" << commande.getDescriptionStatut() << std::endl;
 	os << "Client : " << commande.getClient() << std::endl;
-    os << "Produits achetés : " << std::endl;
+    os << "Produits achetes : " << std::endl;
     for (auto i = 0; i != commande.getProduitsAchetes().size(); i++) {
         os << std::endl;
         os << "Produit " << i+1 << std::endl;

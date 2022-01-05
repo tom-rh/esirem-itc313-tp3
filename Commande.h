@@ -13,7 +13,7 @@ public:
     Client getClient() const;
     std::vector<Produit> getProduitsAchetes() const;
     int getStatut() const;
-    std::string Commande::showStatut() const;
+    std::string getDescriptionStatut() const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Commande& commande);
