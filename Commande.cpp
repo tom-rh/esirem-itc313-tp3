@@ -2,7 +2,7 @@
 #include <iostream>
 
 Commande::Commande(Client client, std::vector<Produit> produitsAchetes) :
-	_client(client), _produitsAchetes(produitsAchetes)
+	_client(client), _produitsAchetes(produitsAchetes), _statut(0)
 {
 
 }
