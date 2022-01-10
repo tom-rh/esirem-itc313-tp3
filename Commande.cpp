@@ -7,19 +7,23 @@ Commande::Commande(Client client, std::vector<Produit> produitsAchetes) :
 
 }
 
-Client Commande::getClient() const {
+Client Commande::getClient() const
+{
     return _client;
 }
 
-std::vector<Produit> Commande::getProduitsAchetes() const{
+std::vector<Produit> Commande::getProduitsAchetes() const
+{
     return _produitsAchetes;
 }
 
-int Commande::getStatut() const{
+int Commande::getStatut() const
+{
     return _statut;
 }
 
-std::string Commande::getDescriptionStatut() const{
+std::string Commande::getDescriptionStatut() const
+{
     switch (_statut)
     {
     case 0:
@@ -46,7 +50,8 @@ std::ostream& operator<<(std::ostream& os, const Commande& commande)
     os << "Statut :" << commande.getDescriptionStatut() << std::endl;
 	os << "Client : " << commande.getClient() << std::endl;
     os << "Produits achetes : " << std::endl;
-    for (auto i = 0; i != commande.getProduitsAchetes().size(); i++) {
+    for (auto i = 0; i != commande.getProduitsAchetes().size(); i++)
+	{
         os << std::endl;
         os << "Produit " << i+1 << std::endl;
         os << commande.getProduitsAchetes().at(i) << std::endl;

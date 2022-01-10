@@ -7,48 +7,53 @@ Produit::Produit(int id, std::string nomProduit, std::string description, int qu
 
 }
 
-void Produit::setProduit(std::string nomProduit) {
-
+void Produit::setProduit(std::string nomProduit)
+{
 	_nomProduit = nomProduit;
 }
 
-void Produit::setDescription(std::string description) {
-
+void Produit::setDescription(std::string description)
+{
 	_description = description;
 }
 
-void Produit::setId(int id) {
-
+void Produit::setId(int id)
+{
 	_id = id;
 }
 
-void Produit::setQuantite(int quantite) {
-
+void Produit::setQuantite(int quantite)
+{
 	_quantite = quantite;
 }
 
-void Produit::setPrix(float prix) {
-
+void Produit::setPrix(float prix)
+{
 	_prix = prix;
 }
 
-std::string Produit::getNameProduit() const {
+std::string Produit::getNameProduit() const
+{
 	return _nomProduit;
 }
 
-std::string Produit::getDescription() const {
+std::string Produit::getDescription() const
+{
 	return _description;
 }
 
-int Produit::getId() const {
+int Produit::getId() const
+{
 	return _id;
 }
 
-int Produit::getQuantite() const {
+int Produit::getQuantite() const
+{
 	return _quantite;
 }
 
-float Produit::getPrix() const {
+float Produit::getPrix() const
+{
 	return _prix;
 }
 
