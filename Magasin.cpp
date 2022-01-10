@@ -24,11 +24,11 @@ void Magasin::trouverProduit(std::string recherche) const {
 	}
 }
 
-void Magasin::changerQuantite(int quantite,std::string recherche){
+void Magasin::changerQuantite(int quantite, std::string recherche){
    for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == recherche)
 		{
-			_produits.at(i).setQuantite(_produits.at(i).getQuantite()+quantite);
+			_produits.at(i).setQuantite(_produits.at(i).getQuantite() + quantite);
 		}
     }
 }
@@ -55,17 +55,17 @@ void Magasin::trouverClient(std::string recherche) const {
 	}
 }
 
-void Magasin::addProduitToPanier(Produit produit,Client client) {
+void Magasin::addProduitToPanier(Produit produit, Client client) {
 	client.ajouterProduitPanier(produit);
 }
 
 
-void Magasin::suprProduitToPanier(Produit produit,Client client) {
+void Magasin::suprProduitToPanier(Produit produit, Client client) {
 	client.supprimerProduitPanier(produit);
 }
 
 
-void Magasin::qtitProduitToPanier(Produit produit,Client client,int quantite){
+void Magasin::qtitProduitToPanier(Produit produit, Client client, int quantite){
 	client.modifierQuantiteProduitPanier(produit, quantite);
 }
 
