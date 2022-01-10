@@ -10,12 +10,12 @@ private:
 	int _quantite;
 	float _prix;
 public:
-	Produit(int id, std::string nomProduit, std::string description, int qtite, float prix);
-	void setProduit(std::string _produit);
-	void setDescription(std::string _description);
-	void setId(int _id);
-	void setQuantite(int _quantite);
-	void setPrix(float _prix);
+	Produit(int id, std::string nomProduit, std::string description, int quantite, float prix);
+	void setProduit(std::string produit);
+	void setDescription(std::string description);
+	void setId(int id);
+	void setQuantite(int quantite);
+	void setPrix(float prix);
 
 	std::string getNameProduit() const;
 	std::string getDescription() const;
