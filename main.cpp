@@ -3,6 +3,6 @@
 
 int main()
 {
-	Menu();
+	Menu().principal();
 	return 0;
 }

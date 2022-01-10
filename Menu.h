@@ -6,11 +6,12 @@ class Menu
 {
 private:
 	int _navigation;
-	bool _exit = false;
-	Magasin _easystore = Magasin("easystore");
+	bool _exit;
+	Magasin _easystore;
 public:
 	Menu();
 	void clear();
+	void principal();
 	void gestionCommande();
 	void gestionClient();
 	void gestionMagasin();
