@@ -1,8 +1,8 @@
 #include "Commande.h"
 #include <iostream>
 
-Commande::Commande(Client client, std::vector<Produit> produitsAchetes) :
-	_client(client), _produitsAchetes(produitsAchetes), _statut(0)
+Commande::Commande(Client client) :
+	_client(client), _produitsAchetes(client.getPanier()), _statut(0)
 {
 
 }
