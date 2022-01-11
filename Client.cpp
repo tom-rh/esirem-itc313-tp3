@@ -64,7 +64,7 @@ std::ostream& operator<<(std::ostream& os, const Client& client)
     if (client.getPanier().empty())
         os << "Vide" << std::endl;
     else {
-		for (auto i = 0; i != client.getPanier().size(); i++) {
+		for (auto i = 0; i < client.getPanier().size(); i++) {
 			os << std::endl;
 			os << "Produit " << i+1 << std::endl;
 			os << client.getPanier().at(i) << std::endl;
