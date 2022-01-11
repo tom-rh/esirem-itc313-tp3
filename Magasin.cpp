@@ -63,28 +63,56 @@ void Magasin::trouverClient(std::string recherche) const
 	}
 }
 
-void Magasin::addProduitToPanier(Produit produit, Client client)
+bool Magasin::addProduitToPanier(Produit produit, int idClient)
 {
-	client.ajouterProduitPanier(produit);
+	for (std::vector<Client>::iterator it = _clients.begin(); it != _clients.end(); it++) {
+		if ( idClient == (*it).getId()){
+			(*it).ajouterProduitPanier(produit);
+			return true;
+		}
+		else
+			return false;
+	}
 }
 
 
-void Magasin::suprProduitToPanier(Produit produit, Client client)
+bool Magasin::suprProduitToPanier(int idProduit, int idClient)
 {
-	client.supprimerProduitPanier(produit);
+	for (std::vector<Client>::iterator it = _clients.begin(); it != _clients.end(); it++) {
+		if ( idClient == (*it).getId()){
+			(*it).supprimerProduitPanier(idProduit);
+			return true;
+		}
+		else
+			return false;
+	}
 }
 
 
-void Magasin::qtitProduitToPanier(Produit produit, Client client, int quantite)
+bool Magasin::qtitProduitToPanier(int idProduit, int idClient, int quantite)
 {
-	client.modifierQuantiteProduitPanier(produit, quantite);
+	for (std::vector<Client>::iterator it = _clients.begin(); it != _clients.end(); it++) {
+		if ( idClient == (*it).getId()){
+			(*it).modifierQuantiteProduitPanier(idProduit, quantite);
+			return true;
+		}
+		else
+			return false;
+	}
 }
 
-bool Magasin::validerCommande(Client client)
+bool Magasin::validerCommande(int idClient)
 {
 	// TODO Diminuer la quantité du  produit dans le magasin
-	_commandes.push_back(Commande(client, client.getPanier()));
-	client.viderPanier();
+	for (std::vector<Client>::iterator it = _clients.begin(); it != _clients.end(); it++) {
+		if ( idClient == (*it).getId()){
+			_commandes.push_back(Commande((*it), (*it).getPanier()));
+			(*it).viderPanier();
+			return true;
+		}
+		else
+			return false;
+	}
 }
 
 bool Magasin::setStatutCommande(Commande commande, int statut)
@@ -109,10 +137,10 @@ void Magasin::afficheCommandes() const
     }
 }
 
-void Magasin::afficheCommandesClient(Client client) const
+void Magasin::afficheCommandesClient(int idClient) const
 {
 	for (auto i = 0; i != _commandes.size(); i++) {
-		if (client.getId() == _commandes.at(i).getClient().getId())
+		if (idClient == _commandes.at(i).getClient().getId())
         	std::cout << _commandes.at(i) << std::endl;
     }
 }

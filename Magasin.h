@@ -23,12 +23,12 @@ public :
 	void addClient(Client client);
 	void afficheClient();
 	void trouverClient(std::string recherche) const;
-	void addProduitToPanier(Produit produit,Client client);
-	void suprProduitToPanier(Produit produit,Client client);
-	void qtitProduitToPanier(Produit produit,Client client, int quantite);
-	bool validerCommande(Client client);
+	bool addProduitToPanier(Produit produit, int idClient);
+	bool suprProduitToPanier(int idProduit, int idClient);
+	bool qtitProduitToPanier(int idProduit, int idClient, int quantite);
+	bool validerCommande(int idClient);
 	bool setStatutCommande(Commande commande, int statut);
 	void afficheCommandes() const;
-	void afficheCommandesClient(Client client) const;
+	void afficheCommandesClient(int idClient) const;
 };
 

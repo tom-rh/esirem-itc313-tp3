@@ -19,8 +19,8 @@ public:
     std::vector<Produit> getPanier() const;
     void ajouterProduitPanier(Produit produit);
     void viderPanier();
-    void modifierQuantiteProduitPanier(Produit produit, int quantite);
-    void supprimerProduitPanier(Produit produit);
+    void modifierQuantiteProduitPanier(int idProduit, int quantite);
+    void supprimerProduitPanier(int idProduit);
 };
 
 std::ostream& operator<<(std::ostream& os, const Client& client);

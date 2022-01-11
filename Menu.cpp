@@ -15,6 +15,7 @@ void Menu::clear()
 
 void Menu::principal()
 {
+	clear();
 	do
 	{
 		std::cout << "...................................................................................................." << std::endl;
@@ -60,7 +61,7 @@ void Menu::gestionClient()
 	std::cout << ".		2 - Modifier la Quantité d'un Produit du Panier                                              ." << std::endl;
 	std::cout << ".		3 - Vider le Panier                                                                          ." << std::endl;
 	std::cout << ".		4 - Supprimer un Produit du Panier                                                           ." << std::endl;
-	std::cout << ".		0 - Retour au Menu                                                                           ." << std::endl;
+	std::cout << ".		Autre - Retour au Menu                                                                       ." << std::endl;
 	std::cout << "...................................................................................................." << std::endl;
 
 	int navig;
@@ -100,7 +101,7 @@ void Menu::gestionMagasin()
 	std::cout << ".		8 - Modifier le Stock                                                                        ." << std::endl;
 	std::cout << ".		9 - Afficher les Clients                                                                     ." << std::endl;
 	std::cout << ".	   10 - Afficher les Produits                                                                    ." << std::endl;
-	std::cout << ".	    0 - Retour au Menu                                                                           ." << std::endl;
+	std::cout << ".		Autre - Retour au Menu                                                                       ." << std::endl;
 	std::cout << "...................................................................................................." << std::endl;
 
 	int navig;

@@ -37,19 +37,19 @@ void Client::viderPanier()
     _panier.clear();
 }
 
-void Client::modifierQuantiteProduitPanier(Produit produit, int quantite)
+void Client::modifierQuantiteProduitPanier(int idProduit, int quantite)
 {
 	for (std::vector<Produit>::iterator it = _panier.begin() ; it != _panier.end(); ++it) {
-		if (produit.getId() == (*it).getId()) {
+		if (idProduit == (*it).getId()) {
 				(*it).setQuantite(quantite);
 			break;
 		}
 	}
 }
 
-void Client::supprimerProduitPanier(Produit produit) {
+void Client::supprimerProduitPanier(int idProduit) {
     for (std::vector<Produit>::iterator it = _panier.begin() ; it != _panier.end(); ++it) {
-		if (produit.getId() == (*it).getId()) {
+		if (idProduit == (*it).getId()) {
 				_panier.erase(it);
 			break;
 		}
