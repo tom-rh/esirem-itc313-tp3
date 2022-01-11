@@ -18,23 +18,26 @@ void Magasin::afficheMagasin()
     }
 }
 
-void Magasin::trouverProduit(std::string recherche) const
+int Magasin::trouverProduit(std::string recherche) const
 {
 	for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == recherche)
 		{
-			std::cout << _produits.at(i) << std::endl;
+			return _produits.at(i).getId();
 		}
 	}
 }
 
-void Magasin::changerQuantite(int quantite, std::string recherche)
+bool Magasin::changerQuantite(int quantite, std::string recherche)
 {
    for (int i=0; i < _produits.size(); i++) {
 		if ( _produits.at(i).getNameProduit() == recherche)
 		{
 			_produits.at(i).setQuantite(_produits.at(i).getQuantite() + quantite);
+			return true;
 		}
+		else
+			return false;
     }
 }
 
@@ -51,13 +54,13 @@ void Magasin::afficheClient()
     }
 }
 
-void Magasin::trouverClient(std::string recherche) const
+int Magasin::trouverClient(std::string recherche) const
 {
 	for (int i=0; i < _clients.size(); i++) {
 		if ( _clients.at(i).getNom() == recherche)
-			std::cout << _produits.at(i) << std::endl;
+			return _produits.at(i).getId();
 		else if (_clients.at(i).getId() == std::stoi(recherche))
-			std::cout << _produits.at(i) << std::endl;
+			return _produits.at(i).getId();
 		else
 			std::cout << "Aucun client trouve !" << std::endl;
 	}
@@ -106,7 +109,7 @@ bool Magasin::validerCommande(int idClient)
 	// TODO Diminuer la quantité du  produit dans le magasin
 	for (std::vector<Client>::iterator it = _clients.begin(); it != _clients.end(); it++) {
 		if ( idClient == (*it).getId()){
-			_commandes.push_back(Commande((*it), (*it).getPanier()));
+			_commandes.push_back(Commande((*it)));
 			(*it).viderPanier();
 			return true;
 		}

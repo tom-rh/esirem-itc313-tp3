@@ -18,11 +18,11 @@ public :
 	Magasin(std::string nom);
 	void addProduit(Produit produit);
 	void afficheMagasin();
-	void trouverProduit(std::string recherche) const;
-	void changerQuantite(int quantite, std::string recherche);
+	int trouverProduit(std::string recherche) const;
+	bool changerQuantite(int quantite, std::string recherche);
 	void addClient(Client client);
 	void afficheClient();
-	void trouverClient(std::string recherche) const;
+	int trouverClient(std::string recherche) const;
 	bool addProduitToPanier(Produit produit, int idClient);
 	bool suprProduitToPanier(int idProduit, int idClient);
 	bool qtitProduitToPanier(int idProduit, int idClient, int quantite);
