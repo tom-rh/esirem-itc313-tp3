@@ -1,10 +1,15 @@
 #include "Commande.h"
 #include <iostream>
 
-Commande::Commande(Client client) :
-	_client(client), _produitsAchetes(client.getPanier()), _statut(0)
+Commande::Commande(int id, Client client) :
+	_id(id), _client(client), _produitsAchetes(client.getPanier()), _statut(0)
 {
 
+}
+
+int Commande::getId() const
+{
+    return _id;
 }
 
 Client Commande::getClient() const
