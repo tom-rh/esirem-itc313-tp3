@@ -11,7 +11,7 @@ private:
 	float _prix;
 public:
 	Produit(int id, std::string nomProduit, std::string description, int quantite, float prix);
-	void setProduit(std::string produit);
+	void setNom(std::string produit);
 	void setDescription(std::string description);
 	void setId(int id);
 	void setQuantite(int quantite);

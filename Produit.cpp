@@ -7,7 +7,7 @@ Produit::Produit(int id, std::string nomProduit, std::string description, int qu
 
 }
 
-void Produit::setProduit(std::string nomProduit)
+void Produit::setNom(std::string nomProduit)
 {
 	_nomProduit = nomProduit;
 }
