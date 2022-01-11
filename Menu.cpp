@@ -3,6 +3,7 @@
 
 Menu::Menu() : _navigation(0), _exit(false), _easystore(Magasin("easystore"))
 {
+	_easystore.addClient(Client(1,"Tom","Roth"));
 }
 
 void Menu::clear()
@@ -23,7 +24,7 @@ void Menu::principal()
 		std::cout << ".		Pour naviguer dans le menu il suffit d'appuyer sur les touches du pave numerique             ." << std::endl;
 		std::cout << ".		                                                                                             ." << std::endl;
 		std::cout << ".		1 - Gestion du Magasin                                                                       ." << std::endl;
-		std::cout << ".		2 - Gestion des Utilisateurs                                                                 ." << std::endl;
+		std::cout << ".		2 - Gestion des Clients                                                                      ." << std::endl;
 		std::cout << ".		3 - Gestion des Commandes                                                                    ." << std::endl;
 		std::cout << ".		Autre - Quitter                                                                              ." << std::endl;
 		std::cout << "...................................................................................................." << std::endl;
@@ -51,16 +52,54 @@ void Menu::principal()
 
 void Menu::gestionCommande()
 {
-	// TODO
+	clear();
+	do
+	{
+		std::cout << "...................................................................................................." << std::endl;
+		std::cout << ".		GESTION COMMANDE																             ." << std::endl;
+		std::cout << ".		                                                                                             ." << std::endl;
+		std::cout << ".		1 - Creer une commande                                                                       ." << std::endl;
+		std::cout << ".		2 - Suivre/Editer une commande                                                               ." << std::endl;
+		std::cout << ".		Autre - Quitter                                                                              ." << std::endl;
+		std::cout << "...................................................................................................." << std::endl;
+
+		std::cin >> _navigation;
+
+		switch(_navigation) {
+			case 1:
+				this->clear();
+				int idClient;
+				std::cout << "Indiquez l'identifiant du client pour lequel vous souhaitez creer la commande :" << std::endl;
+				std::cin >> idClient;
+				this->clear();
+				if (_easystore.validerCommande(idClient) == true)
+					std::cout << "Commande cree" << std::endl;
+				else
+					std::cout << "Erreur lors de la creaton de la commande" << std::endl;
+				break;
+			case 2:
+				this->clear();
+				int numeroCommande;
+				std::cout << "Indiquez le numero de votre commande" << std::endl;
+				std::cin >> numeroCommande;
+				this->clear();
+				// TODO 
+				break;
+			default:
+				principal();
+		}
+	} while(_exit == false);
 }
 
 void Menu::gestionClient()
 {
 	std::cout << "...................................................................................................." << std::endl;
-	std::cout << ".		1 - Ajouter un produit au Panier                                                             ." << std::endl;
-	std::cout << ".		2 - Modifier la Quantité d'un Produit du Panier                                              ." << std::endl;
-	std::cout << ".		3 - Vider le Panier                                                                          ." << std::endl;
-	std::cout << ".		4 - Supprimer un Produit du Panier                                                           ." << std::endl;
+	std::cout << ".		GESTION CLIENT																	             ." << std::endl;
+	std::cout << ".		                                                                                             ." << std::endl;
+	std::cout << ".		1 - Ajouter un produit au panier                                                             ." << std::endl;
+	std::cout << ".		2 - Modifier la quantite d'un produit du panier                                              ." << std::endl;
+	std::cout << ".		3 - Supprimer un produit du panier                                                           ." << std::endl;
+	std::cout << ".		4 - Vider le Panier                                                                          ." << std::endl;
 	std::cout << ".		Autre - Retour au Menu                                                                       ." << std::endl;
 	std::cout << "...................................................................................................." << std::endl;
 
@@ -70,7 +109,15 @@ void Menu::gestionClient()
 
 	switch(navig) {
 		case 1:
-			clear();
+			this->clear();
+			int idClient;
+			std::cout << "Indiquez l'identifiant du client pour lequel vous souhaitez creer la commande :" << std::endl;
+			std::cin >> idClient;
+			this->clear();
+			if (_easystore.validerCommande(idClient) == true)
+				std::cout << "Commande cree" << std::endl;
+			else
+				std::cout << "Erreur lors de la creaton de la commande" << std::endl;
 			break;
 		case 2:
 			clear();
