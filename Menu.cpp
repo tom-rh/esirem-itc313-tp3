@@ -145,16 +145,18 @@ void Menu::gestionClient()
 void Menu::gestionMagasin()
 {
 	std::cout << "...................................................................................................." << std::endl;
+	std::cout << ".		GESTION MAGASIN																	             ." << std::endl;
+	std::cout << ".		                                                                                             ." << std::endl;
 	std::cout << ".		1 - Ajouter un produit                                                                       ." << std::endl;
 	std::cout << ".		2 - Ajouter un client                                                                        ." << std::endl;
-	std::cout << ".		3 - Ajouter un produit au Panier                                                             ." << std::endl;
-	std::cout << ".		4 - Trouver un Produit                                                                       ." << std::endl;
-	std::cout << ".		5 - Trouver un Client                                                                        ." << std::endl;
-	std::cout << ".		6 - Supprimer un Produit du Panier                                                           ." << std::endl;
-	std::cout << ".		7 - Modifier la Quantité d'un Produit du Panier                                              ." << std::endl;
-	std::cout << ".		8 - Modifier le Stock                                                                        ." << std::endl;
-	std::cout << ".		9 - Afficher les Clients                                                                     ." << std::endl;
-	std::cout << ".	   10 - Afficher les Produits                                                                    ." << std::endl;
+	std::cout << ".		3 - Ajouter un produit au panier                                                             ." << std::endl;
+	std::cout << ".		4 - Trouver un produit                                                                       ." << std::endl;
+	std::cout << ".		5 - Trouver un client                                                                        ." << std::endl;
+	std::cout << ".		6 - Supprimer un produit du panier                                                           ." << std::endl;
+	std::cout << ".		7 - Modifier la quantité d'un produit du panier                                              ." << std::endl;
+	std::cout << ".		8 - Modifier le stock                                                                        ." << std::endl;
+	std::cout << ".		9 - Afficher les clients                                                                     ." << std::endl;
+	std::cout << ".	   10 - Afficher les produits                                                                    ." << std::endl;
 	std::cout << ".		Autre - Retour au Menu                                                                       ." << std::endl;
 	std::cout << "...................................................................................................." << std::endl;
 
