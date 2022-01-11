@@ -30,5 +30,6 @@ public :
 	bool setStatutCommande(Commande commande, int statut);
 	void afficheCommandes() const;
 	void afficheCommandesClient(int idClient) const;
+	std::vector<Commande> getCommandes() const;
 };
 
