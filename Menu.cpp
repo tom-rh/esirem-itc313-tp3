@@ -83,6 +83,13 @@ void Menu::gestionCommande()
 				std::cout << "Indiquez le numero de votre commande" << std::endl;
 				std::cin >> numeroCommande;
 				this->clear();
+				for (std::vector<Commande>::iterator it = _easystore.getCommandes().begin(); it != _easystore.getCommandes().end(); it++) {
+					if ( numeroCommande == (*it).getId()){
+						std::cout << (*it) << std::endl;
+					}
+					else
+						std::cout << "Erreur avec le numero de ommande" << std::endl;
+				}
 				// TODO 
 				break;
 			default:
