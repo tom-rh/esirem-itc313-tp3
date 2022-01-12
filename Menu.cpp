@@ -87,12 +87,37 @@ void Menu::gestionCommande()
 				this->clear();
 				for (std::vector<Commande>::iterator it = _easystore.getCommandes().begin(); it != _easystore.getCommandes().end(); it++) {
 					if ( numeroCommande == (*it).getId()){
+						char choix;
 						std::cout << (*it) << std::endl;
+						std::cout << std::endl;
+						std::cout << "Voulez-vous modifier le statut de cette commande ? O/N" << std::endl;
+						std::cin >> choix;
+						switch(choix) {
+							case 'o': case 'O':
+								int choixStatut;
+								std::cout << "Indiquez le chiffre du nouveau statut à indiquer :" << std::endl;
+								std::cin >> choixStatut;
+								if ((*it).setStatut(choixStatut) == true)
+								{
+									this->clear();
+									std::cout << "Nouveau statut !" << std::endl;
+									std::cout << (*it) << std::endl;
+								} 
+								else
+								{
+									this->clear();
+									std::cout << "Erreur lors de la configuration du nouveau statut !" << std::endl;
+									break;
+								}
+							case 'n': case 'N':
+								break;
+							default:
+								break;
+						}
 					}
 					else
-						std::cout << "Erreur avec le numero de ommande" << std::endl;
+						std::cout << "Erreur avec le numero de commande" << std::endl;
 				}
-				// TODO 
 				break;
 			default:
 				principal();
