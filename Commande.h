@@ -16,6 +16,7 @@ public:
     std::vector<Produit> getProduitsAchetes() const;
     int getStatut() const;
     std::string getDescriptionStatut() const;
+    bool setStatut(int statut);
 };
 
 std::ostream& operator<<(std::ostream& os, const Commande& commande);

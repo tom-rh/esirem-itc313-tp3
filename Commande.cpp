@@ -49,6 +49,19 @@ std::string Commande::getDescriptionStatut() const
     }
 }
 
+bool Commande::setStatut(int statut)
+{
+    if (statut >= 0 && statut <= 3)
+    {
+        _statut = statut;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 std::ostream& operator<<(std::ostream& os, const Commande& commande)
 {
     os << "Commande :" << std::endl;
