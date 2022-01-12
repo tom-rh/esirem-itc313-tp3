@@ -4,12 +4,12 @@
 class Produit
 {
 private:
+	static int _debutId;
 	int _id;
 	std::string _nomProduit;
 	std::string _description;
 	int _quantite;
 	float _prix;
-	static int _compteur;
 public:
 	Produit(std::string nomProduit, std::string description, int quantite, float prix);
 	void setNom(std::string produit);
