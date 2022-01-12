@@ -1,8 +1,10 @@
 #include "Produit.h"
 #include <iostream>
 
-Produit::Produit(int id, std::string nomProduit, std::string description, int quantite, float prix) :
-	_id(id), _nomProduit(nomProduit), _description(description), _quantite(quantite), _prix(prix)
+int Produit::_compteur=1;
+
+Produit::Produit(std::string nomProduit, std::string description, int quantite, float prix) :
+	_id(_compteur++), _nomProduit(nomProduit), _description(description), _quantite(quantite), _prix(prix)
 {
 
 }

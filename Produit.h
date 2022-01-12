@@ -9,8 +9,9 @@ private:
 	std::string _description;
 	int _quantite;
 	float _prix;
+	static int _compteur;
 public:
-	Produit(int id, std::string nomProduit, std::string description, int quantite, float prix);
+	Produit(std::string nomProduit, std::string description, int quantite, float prix);
 	void setNom(std::string produit);
 	void setDescription(std::string description);
 	void setId(int id);

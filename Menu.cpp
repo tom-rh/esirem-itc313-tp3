@@ -180,7 +180,7 @@ void Menu::gestionMagasin()
 			std::cin >> prixP;
 			std::cout << "Entrer une quantite :"<< std::endl;
 			std::cin >> qtitP;
-			_easystore.addProduit(Produit(IDP,nomP,descrP,qtitP,prixP));
+			_easystore.addProduit(Produit(nomP,descrP,qtitP,prixP));
 			break;
 		case 2:
 			clear();
