@@ -5,12 +5,13 @@
 class Commande
 {
 private:
+    static int _debutId;
     int _id;
     Client _client;
     std::vector<Produit> _produitsAchetes;
     int _statut;
 public:
-    Commande(int id, Client client);
+    Commande(Client client);
     int getId() const;
     Client getClient() const;
     std::vector<Produit> getProduitsAchetes() const;

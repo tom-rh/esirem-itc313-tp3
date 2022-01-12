@@ -117,7 +117,7 @@ bool Magasin::validerCommande(int idClient)
 	// TODO Diminuer la quantité du  produit dans le magasin
 	for (std::vector<Client>::iterator it = _clients.begin(); it != _clients.end(); it++) {
 		if ( idClient == (*it).getId()){
-			_commandes.push_back(Commande(1,(*it))); // EDIT int
+			_commandes.push_back(Commande((*it)));
 			(*it).viderPanier();
 			return true;
 		}

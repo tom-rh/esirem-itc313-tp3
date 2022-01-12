@@ -164,8 +164,10 @@ void Menu::gestionClient()
 			break;
 		case 5:
 			clear();
+			break;
 		default:
 			principal();
+			break;
 	}
 }
 
