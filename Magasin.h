@@ -23,11 +23,11 @@ public :
 	void addClient(Client client);
 	void afficheClient();
 	int trouverClient(std::string recherche) const;
-	bool addProduitToPanier(Produit produit, int idClient);
+	bool addProduitToPanier(int idProduit, int idClient);
 	bool suprProduitToPanier(int idProduit, int idClient);
 	bool qtitProduitToPanier(int idProduit, int idClient, int quantite);
 	bool validerCommande(int idClient);
-	bool setStatutCommande(Commande commande, int statut);
+	bool setStatutCommande(int idCommande, int statut);
 	void afficheCommandes() const;
 	void afficheCommandesClient(int idClient) const;
 	std::vector<Commande> getCommandes() const;
