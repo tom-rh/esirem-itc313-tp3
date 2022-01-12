@@ -1,8 +1,10 @@
 #include "Client.h"
 #include <iostream>
 
-Client::Client(int id, std::string prenom, std::string nom) :
-	_id(id), _prenom(prenom), _nom(nom)
+int Client::_debutId=1;
+
+Client::Client(std::string prenom, std::string nom) :
+	_id(_debutId++), _prenom(prenom), _nom(nom)
 {
 
 }
