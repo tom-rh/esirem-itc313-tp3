@@ -3,7 +3,9 @@
 
 Menu::Menu() : _navigation(0), _exit(false), _easystore(Magasin("easystore"))
 {
-	_easystore.addClient(Client(1,"Tom","Roth"));
+	Client c1 = Client("Tom","Roth");
+	_easystore.addClient(c1);
+	std::cout << c1 << std::endl;
 }
 
 void Menu::clear()
@@ -165,7 +167,7 @@ void Menu::gestionMagasin()
 
 	std::string nomP, descrP;
 	float prixP;
-	int IDP, qtitP;
+	int qtitP;
 
 	switch(navig) {
 		case 1:
@@ -174,8 +176,6 @@ void Menu::gestionMagasin()
 			std::cin >> nomP;
 			std::cout << "Entrer une description :"<< std::endl;
 			std::cin >> descrP;
-			std::cout << "Entrer un identifiant :"<< std::endl;
-			std::cin >> IDP;
 			std::cout << "Entrer un prix :"<< std::endl;
 			std::cin >> prixP;
 			std::cout << "Entrer une quantite :"<< std::endl;
