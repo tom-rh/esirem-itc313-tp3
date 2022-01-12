@@ -26,6 +26,7 @@ int Magasin::trouverProduit(std::string recherche) const
 			return (*i).getId();
 		}
 	}
+	return 0; // Error
 }
 
 bool Magasin::changerQuantite(int quantite, std::string recherche)
@@ -36,9 +37,8 @@ bool Magasin::changerQuantite(int quantite, std::string recherche)
 			(*i).setQuantite((*i).getQuantite() + quantite);
 			return true;
 		}
-		else
-			return false;
     }
+	return false;
 }
 
 void Magasin::addClient(Client client)
@@ -65,6 +65,7 @@ int Magasin::trouverClient(std::string recherche) const
 		else
 			std::cout << "Aucun client trouve !" << std::endl;
 	}
+	return 0; // Error
 }
 
 bool Magasin::addProduitToPanier(int idProduit, int idClient)
@@ -76,13 +77,14 @@ bool Magasin::addProduitToPanier(int idProduit, int idClient)
 			for (auto i = _produits.begin(); i != _produits.end(); i++)
 			{
 				if ( idProduit == (*i).getId())
+				{
 					(*it).ajouterProduitPanier((*i));
 					return true;
+				}
 			}
 		}
-		else
-			return false;
 	}
+	return false;
 }
 
 
@@ -94,9 +96,8 @@ bool Magasin::suprProduitToPanier(int idProduit, int idClient)
 			(*it).supprimerProduitPanier(idProduit);
 			return true;
 		}
-		else
-			return false;
 	}
+	return false;
 }
 
 
@@ -107,9 +108,8 @@ bool Magasin::qtitProduitToPanier(int idProduit, int idClient, int quantite)
 			(*it).modifierQuantiteProduitPanier(idProduit, quantite);
 			return true;
 		}
-		else
-			return false;
 	}
+	return false;
 }
 
 bool Magasin::validerCommande(int idClient)
@@ -121,9 +121,8 @@ bool Magasin::validerCommande(int idClient)
 			(*it).viderPanier();
 			return true;
 		}
-		else
-			return false;
 	}
+	return false;
 }
 
 bool Magasin::setStatutCommande(int idCommande, int statut)
@@ -136,9 +135,7 @@ bool Magasin::setStatutCommande(int idCommande, int statut)
 			}
     	}
 	} 
-	else {
-		return false;
-	}
+	return false;
 }
 
 void Magasin::afficheCommandes() const
