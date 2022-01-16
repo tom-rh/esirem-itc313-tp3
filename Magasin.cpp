@@ -157,3 +157,8 @@ std::vector<Commande> Magasin::getCommandes() const
 {
 	return _commandes;
 }
+
+std::vector<Client> Magasin::getClients() const
+{
+	return _clients;
+}

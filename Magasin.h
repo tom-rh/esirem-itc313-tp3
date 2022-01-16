@@ -31,5 +31,6 @@ public :
 	void afficheCommandes() const;
 	void afficheCommandesClient(int idClient) const;
 	std::vector<Commande> getCommandes() const;
+	std::vector<Client> getClients() const;
 };
 
