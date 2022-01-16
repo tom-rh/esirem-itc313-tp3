@@ -29,33 +29,39 @@ std::vector<Produit> Client::getPanier() const
     return _panier;
 }
 
-void Client::ajouterProduitPanier(Produit produit)
+bool Client::ajouterProduitPanier(Produit produit)
 {
     _panier.push_back(produit);
+	return true;
 }
 
-void Client::viderPanier()
+bool Client::viderPanier()
 {
     _panier.clear();
+	return true;
 }
 
-void Client::modifierQuantiteProduitPanier(int idProduit, int quantite)
+bool Client::modifierQuantiteProduitPanier(int idProduit, int quantite)
 {
-	for (std::vector<Produit>::iterator it = _panier.begin() ; it != _panier.end(); ++it) {
+	for (std::vector<Produit>::iterator it = _panier.begin() ; it != _panier.end(); ++it)
+	{
 		if (idProduit == (*it).getId()) {
-				(*it).setQuantite(quantite);
-			break;
+			(*it).setQuantite(quantite);
+			return true;
 		}
 	}
+	return false;
 }
 
-void Client::supprimerProduitPanier(int idProduit) {
-    for (std::vector<Produit>::iterator it = _panier.begin() ; it != _panier.end(); ++it) {
+bool Client::supprimerProduitPanier(int idProduit) {
+    for (std::vector<Produit>::iterator it = _panier.begin() ; it != _panier.end(); ++it)
+	{
 		if (idProduit == (*it).getId()) {
-				_panier.erase(it);
-			break;
+			_panier.erase(it);
+			return true;
 		}
 	}
+	return false;
 }
 
 std::ostream& operator<<(std::ostream& os, const Client& client)
