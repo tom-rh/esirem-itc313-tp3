@@ -12,6 +12,7 @@ private:
 public:
 	Menu();
 	void clear();
+	void redirectionMenu();
 	void principal();
 	int gestionCommande();
 	int gestionClient();

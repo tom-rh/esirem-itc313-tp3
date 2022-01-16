@@ -17,6 +17,11 @@ void Menu::clear()
 	}
 }
 
+void Menu::redirectionMenu()
+{
+	std::cout << "Retour au menu principal dans 5 secondes !" << std::endl;
+}
+
 void Menu::principal()
 {
 	clear();
