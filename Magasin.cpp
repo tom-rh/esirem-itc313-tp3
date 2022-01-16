@@ -5,12 +5,13 @@ Magasin::Magasin(std::string nom) : _nom(nom)
 
 }
 
-void Magasin::addProduit(Produit produit)
+bool Magasin::addProduit(Produit produit)
 {
 	_produits.push_back(produit);
+	return true;
 }
 
-void Magasin::afficheMagasin()
+void Magasin::afficheProduits() const
 {
     for (auto i = _produits.begin(); i != _produits.end(); i++)
     {
@@ -41,12 +42,13 @@ bool Magasin::changerQuantite(int quantite, std::string recherche)
 	return false;
 }
 
-void Magasin::addClient(Client client)
+bool Magasin::addClient(Client client)
 {
 	_clients.push_back(client);
+	return true;
 }
 
-void Magasin::afficheClient()
+void Magasin::afficheClients() const
 {
     for (auto i = _clients.begin(); i != _clients.end(); i++)
     {
@@ -161,4 +163,18 @@ std::vector<Commande> Magasin::getCommandes() const
 std::vector<Client> Magasin::getClients() const
 {
 	return _clients;
+}
+
+std::vector<Produit> Magasin::getProduits() const
+{
+	return _produits;
+}
+
+Client Magasin::getClient(int idClient)
+{
+	for (Client &client : _clients)
+	{
+		if (idClient == client.getId())
+			return client;
+	}
 }
