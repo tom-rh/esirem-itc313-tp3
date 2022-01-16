@@ -1,7 +1,8 @@
 #include "Menu.h"
 #include "Produit.h"
+#include <windows.h> 
 
-Menu::Menu() : _navigation(0), _exit(false), _easystore(Magasin("easystore"))
+Menu::Menu() : _navigation(0), _exit(false), _tempsPause(5000), _easystore(Magasin("easystore"))
 {
 	Client c1 = Client("Tom","Roth");
 	_easystore.addClient(c1);
@@ -52,7 +53,7 @@ void Menu::principal()
 	} while(_exit == false);
 }
 
-void Menu::gestionCommande()
+int Menu::gestionCommande()
 {
 	clear();
 	do
@@ -120,13 +121,38 @@ void Menu::gestionCommande()
 				}
 				break;
 			default:
-				principal();
+				_exit = true;
 		}
 	} while(_exit == false);
+	return 0;
 }
 
-void Menu::gestionClient()
+int Menu::gestionClient()
 {
+	clear();
+
+	bool clientTrouve = false;
+	int idClient = 0;
+
+	std::cout << "Indiquez l'id de votre client" << std::endl;
+	std::cin >> idClient;
+	for (std::vector<Client>::iterator it = _easystore.getClients().begin(); it != _easystore.getClients().end(); it++)
+	{
+		if (idClient == (*it).getId())
+		{
+			clientTrouve = true;
+			break;
+		}
+	}
+	if (clientTrouve == false)
+	{
+		clear();
+		std::cout << "Identifiant incorrect ! - Pour ajouter un client, merci de vous rendre dans la section Gestion du magasin." << std::endl;
+		std::cout << "Retour au menu principal dans 5 secondes !" << std::endl;
+		Sleep(_tempsPause);
+		clear();
+		return 0;
+	}
 	std::cout << "...................................................................................................." << std::endl;
 	std::cout << ".		GESTION CLIENT																	             ." << std::endl;
 	std::cout << ".		                                                                                             ." << std::endl;
@@ -137,17 +163,11 @@ void Menu::gestionClient()
 	std::cout << ".		Autre - Retour au Menu                                                                       ." << std::endl;
 	std::cout << "...................................................................................................." << std::endl;
 
-	int navig;
+	std::cin >> _navigation;
 
-	std::cin>> navig;
-
-	switch(navig) {
+	switch(_navigation) {
 		case 1:
-			this->clear();
-			int idClient;
-			std::cout << "Indiquez l'identifiant du client pour lequel vous souhaitez creer la commande :" << std::endl;
-			std::cin >> idClient;
-			this->clear();
+			clear();
 			if (_easystore.validerCommande(idClient) == true)
 				std::cout << "Commande cree" << std::endl;
 			else
@@ -166,12 +186,12 @@ void Menu::gestionClient()
 			clear();
 			break;
 		default:
-			principal();
 			break;
 	}
+	return 0;
 }
 
-void Menu::gestionMagasin()
+int Menu::gestionMagasin()
 {
 	std::cout << "...................................................................................................." << std::endl;
 	std::cout << ".		GESTION MAGASIN																	             ." << std::endl;
@@ -237,6 +257,7 @@ void Menu::gestionMagasin()
 			clear();
 			break;
 		default:
-			principal();
+			break;
 	}
+	return 0;
 }
