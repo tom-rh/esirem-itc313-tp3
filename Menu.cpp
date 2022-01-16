@@ -7,6 +7,12 @@ Menu::Menu() : _navigation(0), _exit(false), _tempsPause(5000), _easystore(Magas
 	Client c1 = Client("Tom","Roth");
 	_easystore.addClient(c1);
 	std::cout << c1 << std::endl;
+	Produit p1 = Produit("XBOX", "Console", 5, 25);
+	_easystore.addProduit(p1);
+	std::cout << p1 << std::endl;
+	_easystore.afficheClients();
+	_easystore.afficheProduits();
+	Sleep(_tempsPause);
 }
 
 void Menu::clear()
@@ -39,7 +45,8 @@ void Menu::principal()
 
 		std::cin >> _navigation;
 
-		switch(_navigation) {
+		switch(_navigation)
+		{
 			case 1:
 				this->clear();
 				this->gestionMagasin();
@@ -73,7 +80,8 @@ int Menu::gestionCommande()
 
 		std::cin >> _navigation;
 
-		switch(_navigation) {
+		switch(_navigation)
+		{
 			case 1:
 				this->clear();
 				int idClient;
@@ -138,14 +146,18 @@ int Menu::gestionClient()
 
 	bool clientTrouve = false;
 	int idClient = 0;
-
 	std::cout << "Indiquez l'id de votre client" << std::endl;
 	std::cin >> idClient;
-	for (std::vector<Client>::iterator it = _easystore.getClients().begin(); it != _easystore.getClients().end(); it++)
+	for (Client &client : _easystore.getClients())
 	{
-		if (idClient == (*it).getId())
+		if (idClient == client.getId())
 		{
 			clientTrouve = true;
+			clear();
+			Sleep(_tempsPause);
+			std::cout << "Client " << idClient << "trouvé !" << std::endl;
+			std::cout << "Redirection vers le menu de gestion !" << std::endl;
+			clear();
 			break;
 		}
 	}
@@ -153,7 +165,7 @@ int Menu::gestionClient()
 	{
 		clear();
 		std::cout << "Identifiant incorrect ! - Pour ajouter un client, merci de vous rendre dans la section Gestion du magasin." << std::endl;
-		std::cout << "Retour au menu principal dans 5 secondes !" << std::endl;
+		this->redirectionMenu();
 		Sleep(_tempsPause);
 		clear();
 		return 0;
@@ -170,13 +182,45 @@ int Menu::gestionClient()
 
 	std::cin >> _navigation;
 
-	switch(_navigation) {
+	int idProduit = 0;
+	bool produitTouve = false;
+	Client clientIdentifie = _easystore.getClient(idClient);
+
+	switch(_navigation)
+	{
 		case 1:
 			clear();
-			if (_easystore.validerCommande(idClient) == true)
-				std::cout << "Commande cree" << std::endl;
-			else
-				std::cout << "Erreur lors de la creaton de la commande" << std::endl;
+			std::cout << "Indiquez l'id du produit à ajouter au panier" << std::endl;
+			std::cin >> idProduit;
+			for (Produit &produit : _easystore.getProduits())
+			{
+				if (idProduit == produit.getId())
+				{
+					produitTouve = true;
+					if (clientIdentifie.ajouterProduitPanier(produit) == true)
+					{
+						std::cout << "Produit ajoute au panier !" << std::endl;
+						Sleep(_tempsPause);
+						clear();
+					}
+					else
+					{
+						std::cout << "Erreur lors de l'ajout du produit au panier !" << std::endl;
+						Sleep(_tempsPause);
+						clear();
+					}
+					break;
+				}
+			}
+			if (produitTouve == false)
+			{
+				clear();
+				std::cout << "Identifiant incorrect ! - Pour ajouter un produit au magasin, merci de vous rendre dans la section Gestion du magasin." << std::endl;
+				this->redirectionMenu();
+				Sleep(_tempsPause);
+				clear();
+				return 0;
+			}
 			break;
 		case 2:
 			clear();
@@ -191,6 +235,7 @@ int Menu::gestionClient()
 			clear();
 			break;
 		default:
+			clear();
 			break;
 	}
 	return 0;
@@ -203,62 +248,122 @@ int Menu::gestionMagasin()
 	std::cout << ".		                                                                                             ." << std::endl;
 	std::cout << ".		1 - Ajouter un produit                                                                       ." << std::endl;
 	std::cout << ".		2 - Ajouter un client                                                                        ." << std::endl;
-	std::cout << ".		3 - Ajouter un produit au panier                                                             ." << std::endl;
-	std::cout << ".		4 - Trouver un produit                                                                       ." << std::endl;
-	std::cout << ".		5 - Trouver un client                                                                        ." << std::endl;
-	std::cout << ".		6 - Supprimer un produit du panier                                                           ." << std::endl;
-	std::cout << ".		7 - Modifier la quantité d'un produit du panier                                              ." << std::endl;
-	std::cout << ".		8 - Modifier le stock                                                                        ." << std::endl;
-	std::cout << ".		9 - Afficher les clients                                                                     ." << std::endl;
-	std::cout << ".	   10 - Afficher les produits                                                                    ." << std::endl;
+	std::cout << ".		3 - Trouver un produit                                                                       ." << std::endl;
+	std::cout << ".		4 - Trouver un client                                                                        ." << std::endl;
+	std::cout << ".		5 - Modifier le stock                                                                        ." << std::endl;
+	std::cout << ".		6 - Afficher les clients                                                                     ." << std::endl;
+	std::cout << ".		7 - Afficher les produits                                                                    ." << std::endl;
 	std::cout << ".		Autre - Retour au Menu                                                                       ." << std::endl;
 	std::cout << "...................................................................................................." << std::endl;
 
 	int navig;
 	std::cin >> navig;
 
-	std::string nomP, descrP;
-	float prixP;
-	int qtitP;
+	std::string nomProduit, descriptionProduit;
+	float prixProduit;
+	int quantiteProduit;
+
+	std::string prenomCLient, nomClient;
 
 	switch(navig) {
 		case 1:
 			clear();
-			std::cout << "Entrer un nom :"<< std::endl;
-			std::cin >> nomP;
-			std::cout << "Entrer une description :"<< std::endl;
-			std::cin >> descrP;
-			std::cout << "Entrer un prix :"<< std::endl;
-			std::cin >> prixP;
-			std::cout << "Entrer une quantite :"<< std::endl;
-			std::cin >> qtitP;
-			_easystore.addProduit(Produit(nomP,descrP,qtitP,prixP));
+			std::cout << "Entrez un nom" << std::endl;
+			std::cin >> nomProduit;
+			std::cout << "Entrez une description" << std::endl;
+			std::cin >> descriptionProduit;
+			std::cout << "Entrez un prix" << std::endl;
+			std::cin >> prixProduit;
+			std::cout << "Entrez une quantite" << std::endl;
+			std::cin >> quantiteProduit;
+			_easystore.addProduit(Produit(nomProduit,descriptionProduit,prixProduit,quantiteProduit));
 			break;
 		case 2:
+			clear();
+			std::cout << "Entrez le prenom du client à ajouter" << std::endl;
+			std::cin >> prenomCLient;
+			std::cout << "Entrez le nom du client à ajouter" << std::endl;
+			std::cin >> nomClient;
+			if (_easystore.addClient(Client(prenomCLient,nomClient)))
+			{
+				clear();
+				std::cout << "Client ajoute avec succes !" << std::endl;
+			}
+			else
+			{
+				clear();
+				std::cout << "Erreur lors de l'ajout du client !" << std::endl;
+			}
+			this->redirectionMenu();
+			Sleep(_tempsPause);
 			clear();
 			break;
 		case 3:
 			clear();
+			std::cout << "Entrez le nom du produit" << std::endl;
+			std::cin >> nomProduit;
+			if (_easystore.trouverProduit(nomProduit) == 0)
+			{
+				clear();
+				std::cout << "Erreur lors de la recherche !" << std::endl;
+			}
+			else
+			{
+				clear();
+				std::cout << "Le produit que vous avez recherche a l'identidiant : " << _easystore.trouverProduit(nomProduit) << std::endl;
+			}
+			redirectionMenu();
+			Sleep(_tempsPause);
+			clear();
 			break;
 		case 4:
+			clear();
+			std::cout << "Entrez le nom du client" << std::endl;
+			std::cin >> nomClient;
+			if (_easystore.trouverClient(nomClient) == 0)
+			{
+				clear();
+				std::cout << "Erreur lors de la recherche !" << std::endl;
+			}
+			else
+			{
+				clear();
+				std::cout << "Le client que vous avez recherche a l'identidiant : " << _easystore.trouverClient(nomClient) << std::endl;
+			}
+			redirectionMenu();
+			Sleep(_tempsPause);
 			clear();
 			break;
 		case 5:
 			clear();
+			std::cout << "Entrez le nom du produit" << std::endl;
+			std::cin >> nomProduit;
+			std::cout << "Entrez la nouvelle quantite de " << nomProduit << std::endl;
+			std::cin >> quantiteProduit;
+			if ((_easystore.changerQuantite(quantiteProduit,nomProduit)) == true)
+			{
+				clear();
+				std::cout << "Stock mis à jour !" << std::endl;
+			}
+			else
+			{
+				clear();
+				std::cout << "Erreur lors la mise a jour du stock !" << std::endl;
+			}
+			this->redirectionMenu();
+			Sleep(_tempsPause);
+			clear();
 			break;
 		case 6:
+			clear();
+			_easystore.afficheClients();
+			Sleep(_tempsPause);
 			clear();
 			break;
 		case 7:
 			clear();
-			break;
-		case 8:
-			clear();
-			break;
-		case 9:
-			clear();
-			break;
-		case 10:
+			_easystore.afficheProduits();
+			Sleep(_tempsPause);
 			clear();
 			break;
 		default:
