@@ -68,75 +68,74 @@ void Menu::principal()
 int Menu::gestionCommande()
 {
 	clear();
-	do
+	std::cout << "...................................................................................................." << std::endl;
+	std::cout << ".	GESTION COMMANDE" << std::endl;
+	std::cout << "." << std::endl;
+	std::cout << ".	1 - Creer une commande" << std::endl;
+	std::cout << ".	2 - Suivre/Editer une commande" << std::endl;
+	std::cout << ".	Autre - Quitter" << std::endl;
+	std::cout << "...................................................................................................." << std::endl;
+
+	std::cin >> _navigation;
+
+	switch(_navigation)
 	{
-		std::cout << "...................................................................................................." << std::endl;
-		std::cout << ".	GESTION COMMANDE" << std::endl;
-		std::cout << "." << std::endl;
-		std::cout << ".	1 - Creer une commande" << std::endl;
-		std::cout << ".	2 - Suivre/Editer une commande" << std::endl;
-		std::cout << ".	Autre - Quitter" << std::endl;
-		std::cout << "...................................................................................................." << std::endl;
-
-		std::cin >> _navigation;
-
-		switch(_navigation)
-		{
-			case 1:
-				this->clear();
-				int idClient;
-				std::cout << "Indiquez l'identifiant du client pour lequel vous souhaitez creer la commande :" << std::endl;
-				std::cin >> idClient;
-				this->clear();
-				if (_easystore.validerCommande(idClient) == true)
-					std::cout << "Commande cree" << std::endl;
-				else
-					std::cout << "Erreur lors de la creaton de la commande" << std::endl;
-				break;
-			case 2:
-				this->clear();
-				int numeroCommande;
-				std::cout << "Indiquez le numero de votre commande" << std::endl;
-				std::cin >> numeroCommande;
-				this->clear();
-				for (std::vector<Commande>::iterator it = _easystore.getCommandes().begin(); it != _easystore.getCommandes().end(); it++) {
-					if ( numeroCommande == (*it).getId()){
-						char choix;
-						std::cout << (*it) << std::endl;
-						std::cout << std::endl;
-						std::cout << "Voulez-vous modifier le statut de cette commande ? O/N" << std::endl;
-						std::cin >> choix;
-						switch(choix) {
-							case 'o': case 'O':
-								int choixStatut;
-								std::cout << "Indiquez le chiffre du nouveau statut a indiquer :" << std::endl;
-								std::cin >> choixStatut;
-								if ((*it).setStatut(choixStatut) == true)
-								{
-									this->clear();
-									std::cout << "Nouveau statut !" << std::endl;
-									std::cout << (*it) << std::endl;
-								} 
-								else
-								{
-									this->clear();
-									std::cout << "Erreur lors de la configuration du nouveau statut !" << std::endl;
-									break;
-								}
-							case 'n': case 'N':
+		case 1:
+			this->clear();
+			int idClient;
+			std::cout << "Indiquez l'identifiant du client pour lequel vous souhaitez creer la commande :" << std::endl;
+			std::cin >> idClient;
+			this->clear();
+			if (_easystore.validerCommande(idClient) == true)
+				std::cout << "Commande cree" << std::endl;
+			else
+				std::cout << "Erreur lors de la creaton de la commande" << std::endl;
+			break;
+		case 2:
+			this->clear();
+			int numeroCommande;
+			std::cout << "Indiquez le numero de votre commande" << std::endl;
+			std::cin >> numeroCommande;
+			this->clear();
+			for (std::vector<Commande>::iterator it = _easystore.getCommandes().begin(); it != _easystore.getCommandes().end(); it++) {
+				if ( numeroCommande == (*it).getId()){
+					char choix;
+					std::cout << (*it) << std::endl;
+					std::cout << std::endl;
+					std::cout << "Voulez-vous modifier le statut de cette commande ? O/N" << std::endl;
+					std::cin >> choix;
+					switch(choix) {
+						case 'o': case 'O':
+							int choixStatut;
+							std::cout << "Indiquez le chiffre du nouveau statut a indiquer :" << std::endl;
+							std::cin >> choixStatut;
+							this->clear();
+							if ((*it).setStatut(choixStatut) == true)
+							{
+								std::cout << "Nouveau statut !" << std::endl;
+								std::cout << (*it) << std::endl;
+							} 
+							else
+							{
+								std::cout << "Erreur lors de la configuration du nouveau statut !" << std::endl;
 								break;
-							default:
-								break;
-						}
+							}
+						case 'n': case 'N':
+							break;
+						default:
+							break;
 					}
-					else
-						std::cout << "Erreur avec le numero de commande" << std::endl;
 				}
-				break;
-			default:
-				_exit = true;
-		}
-	} while(_exit == false);
+				else
+					std::cout << "Erreur avec le numero de commande" << std::endl;
+			}
+			Sleep(_tempsPause);
+			clear();
+			break;
+		default:
+			break;
+	}
+	clear();
 	return 0;
 }
 
@@ -199,17 +198,11 @@ int Menu::gestionClient()
 				{
 					produitTouve = true;
 					if (clientIdentifie.ajouterProduitPanier(produit) == true)
-					{
 						std::cout << "Produit ajoute au panier !" << std::endl;
-						Sleep(_tempsPause);
-						clear();
-					}
 					else
-					{
 						std::cout << "Erreur lors de l'ajout du produit au panier !" << std::endl;
-						Sleep(_tempsPause);
-						clear();
-					}
+					Sleep(_tempsPause);
+					clear();
 					break;
 				}
 			}
@@ -235,17 +228,11 @@ int Menu::gestionClient()
 				{
 					produitTouve = true;
 					if (clientIdentifie.modifierQuantiteProduitPanier(idProduit,quantiteProduit) == true)
-					{
 						std::cout << "Quantite modifie avec succes !" << std::endl;
-						Sleep(_tempsPause);
-						clear();
-					}
 					else
-					{
 						std::cout << "Erreur lors de la modification de la quantite du produit dans le panier !" << std::endl;
-						Sleep(_tempsPause);
-						clear();
-					}
+					Sleep(_tempsPause);
+					clear();
 					break;
 				}
 			}
@@ -263,23 +250,19 @@ int Menu::gestionClient()
 			clear();
 			std::cout << "Indiquez l'id du produit a supprimer du panier" << std::endl;
 			std::cin >> idProduit;
+			clear();
 			for (Produit &produit : _easystore.getProduits())
 			{
 				if (idProduit == produit.getId())
 				{
 					produitTouve = true;
 					if (clientIdentifie.supprimerProduitPanier(idProduit) == true)
-					{
 						std::cout << "Produit supprime du panier !" << std::endl;
-						Sleep(_tempsPause);
-						clear();
-					}
 					else
-					{
 						std::cout << "Erreur lors de la suppression du produit du panier !" << std::endl;
-						Sleep(_tempsPause);
-						clear();
-					}
+					this->redirectionMenu();
+					Sleep(_tempsPause);
+					clear();
 					break;
 				}
 			}
@@ -296,13 +279,9 @@ int Menu::gestionClient()
 		case 4:
 			clear();
 			if (clientIdentifie.viderPanier())
-			{
 				std::cout << "Le panier du client a ete vide !" << std::endl;
-			}
 			else
-			{
 				std::cout << "Erreur lors de l'operation !" << std::endl;
-			}
 			this->redirectionMenu();
 			Sleep(_tempsPause);
 			clear();
@@ -311,6 +290,7 @@ int Menu::gestionClient()
 			clear();
 			break;
 	}
+	clear();
 	return 0;
 }
 
@@ -442,5 +422,6 @@ int Menu::gestionMagasin()
 		default:
 			break;
 	}
+	clear();
 	return 0;
 }
