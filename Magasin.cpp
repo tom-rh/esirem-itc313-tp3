@@ -67,7 +67,7 @@ int Magasin::trouverClient(std::string recherche) const
 		else
 			std::cout << "Aucun client trouve !" << std::endl;
 	}
-	return 0; // Error
+	return 0; // Error - Ne fonctionne pas correctement
 }
 
 bool Magasin::addProduitToPanier(int idProduit, int idClient)
@@ -132,8 +132,8 @@ bool Magasin::setStatutCommande(int idCommande, int statut)
 	if (statut <= 4 && statut >=0) {
 		for (auto i = _commandes.begin(); i != _commandes.end(); i++) {
 			if (idCommande == (*i).getId()) {
-				// TODO
-				return true;
+				if ((*i).setStatut(statut) == true)
+					return true;
 			}
     	}
 	} 
@@ -142,8 +142,8 @@ bool Magasin::setStatutCommande(int idCommande, int statut)
 
 void Magasin::afficheCommandes() const
 {
-	for (auto i = _commandes.begin(); i != _commandes.end(); i++) {
-        std::cout << (*i) << std::endl;
+	for (Commande commande : _commandes) {
+        std::cout << commande << std::endl;
     }
 }
 
