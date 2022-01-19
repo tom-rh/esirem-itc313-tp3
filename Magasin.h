@@ -31,10 +31,10 @@ public :
 	bool setStatutCommande(int idCommande, int statut);
 	void afficheCommandes();
 	void afficheCommandesClient(int idClient);
-	std::vector<Commande> getCommandes() const;
-	std::vector<Client> getClients() const;
-	std::vector<Produit> getProduits() const;
-	Client getClient(int idClient);
-	Produit getProduit(int idProduit);
+	std::vector<Commande>& getCommandes();
+	std::vector<Client>& getClients();
+	std::vector<Produit>& getProduits();
+	Client& getClient(int idClient);
+	Produit& getProduit(int idProduit);
 };
 

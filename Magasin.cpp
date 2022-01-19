@@ -22,7 +22,7 @@ void Magasin::afficheProduits()
 int Magasin::trouverProduit(std::string nom)
 {
 	for (Produit &produit : _produits) {
-		if (produit.getNameProduit() == nom)
+		if (produit.getNomProduit() == nom)
 		{
 			return produit.getId();
 		}
@@ -92,7 +92,8 @@ bool Magasin::addProduitToPanier(int idProduit, int idClient)
 
 bool Magasin::suprProduitToPanier(int idProduit, int idClient)
 {
-	for (Client &client : _clients) {
+	for (Client &client : _clients)
+	{
 		if ( idClient == client.getId())
 		{
 			client.supprimerProduitPanier(idProduit);
@@ -105,8 +106,10 @@ bool Magasin::suprProduitToPanier(int idProduit, int idClient)
 
 bool Magasin::qtitProduitToPanier(int idProduit, int idClient, int quantite)
 {
-	for (Client &client : _clients) {
-		if ( idClient == client.getId()){
+	for (Client &client : _clients)
+	{
+		if ( idClient == client.getId())
+		{
 			client.modifierQuantiteProduitPanier(idProduit, quantite);
 			return true;
 		}
@@ -118,8 +121,14 @@ bool Magasin::validerCommande(int idClient)
 {
 	// TODO Diminuer la quantité du  produit dans le magasin
 	for (Client &client : _clients) {
-		if ( idClient == client.getId()){
+		if ( idClient == client.getId())
+		{
 			_commandes.push_back(Commande(client));
+			for (Produit &produit : client.getPanier())
+			{
+				std::cout << produit.getQuantite() << std::endl;
+				changerQuantite((produit.getQuantite()-1), produit.getNomProduit());
+			}
 			client.viderPanier();
 			return true;
 		}
@@ -130,8 +139,10 @@ bool Magasin::validerCommande(int idClient)
 bool Magasin::setStatutCommande(int idCommande, int statut)
 {
 	if (statut <= 4 && statut >=0) {
-		for (Commande &commande : _commandes) {
-			if (idCommande == commande.getId()) {
+		for (Commande &commande : _commandes)
+		{
+			if (idCommande == commande.getId())
+			{
 				if (commande.setStatut(statut) == true)
 					return true;
 			}
@@ -142,46 +153,48 @@ bool Magasin::setStatutCommande(int idCommande, int statut)
 
 void Magasin::afficheCommandes()
 {
-	for (Commande &commande : _commandes) {
+	for (Commande &commande : _commandes)
+	{
         std::cout << commande << std::endl;
     }
 }
 
 void Magasin::afficheCommandesClient(int idClient)
 {
-	for (Commande &commande : _commandes) {
+	for (Commande &commande : _commandes)
+	{
 		if (idClient == commande.getClient().getId())
         	std::cout << commande << std::endl;
     }
 }
 
-std::vector<Commande> Magasin::getCommandes() const
+std::vector<Commande>& Magasin::getCommandes()
 {
 	return _commandes;
 }
 
-std::vector<Client> Magasin::getClients() const
+std::vector<Client>& Magasin::getClients()
 {
 	return _clients;
 }
 
-std::vector<Produit> Magasin::getProduits() const
+std::vector<Produit>& Magasin::getProduits()
 {
 	return _produits;
 }
 
-Client Magasin::getClient(int idClient)
+Client& Magasin::getClient(int idClient)
 {
-	for (Client &client : _clients)
+	for (auto &client : _clients)
 	{
 		if (idClient == client.getId())
 			return client;
 	}
 }
 
-Produit Magasin::getProduit(int idProduit)
+Produit& Magasin::getProduit(int idProduit)
 {
-	for (Produit &produit : _produits)
+	for (auto &produit : _produits)
 	{
 		if (idProduit == produit.getId())
 			return produit;
