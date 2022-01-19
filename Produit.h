@@ -17,7 +17,7 @@ public:
 	void setId(int id);
 	void setQuantite(int quantite);
 	void setPrix(float prix);
-	std::string getNameProduit() const;
+	std::string getNomProduit() const;
 	std::string getDescription() const;
 	int getId() const;
 	int getQuantite() const;
