@@ -43,10 +43,10 @@ bool Client::viderPanier()
 
 bool Client::modifierQuantiteProduitPanier(int idProduit, int quantite)
 {
-	for (std::vector<Produit>::iterator it = _panier.begin() ; it != _panier.end(); ++it)
+	for (Produit &produit : _panier)
 	{
-		if (idProduit == (*it).getId()) {
-			(*it).setQuantite(quantite);
+		if (idProduit == produit.getId()) {
+			produit.setQuantite(quantite);
 			return true;
 		}
 	}
