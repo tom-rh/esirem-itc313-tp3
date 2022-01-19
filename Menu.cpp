@@ -90,6 +90,8 @@ int Menu::gestionCommande()
 				std::cout << "Commande cree" << std::endl;
 			else
 				std::cout << "Erreur lors de la creaton de la commande" << std::endl;
+			Sleep(_tempsPause);
+			clear();
 			break;
 		case 2:
 			this->clear();
@@ -97,10 +99,10 @@ int Menu::gestionCommande()
 			std::cout << "Indiquez le numero de votre commande" << std::endl;
 			std::cin >> numeroCommande;
 			this->clear();
-			for (std::vector<Commande>::iterator it = _easystore.getCommandes().begin(); it != _easystore.getCommandes().end(); it++) {
-				if ( numeroCommande == (*it).getId()){
+			for (Commande &commande : _easystore.getCommandes()) {
+				if ( numeroCommande == commande.getId()){
 					char choix;
-					std::cout << (*it) << std::endl;
+					std::cout << commande << std::endl;
 					std::cout << std::endl;
 					std::cout << "Voulez-vous modifier le statut de cette commande ? O/N" << std::endl;
 					std::cin >> choix;
@@ -110,10 +112,10 @@ int Menu::gestionCommande()
 							std::cout << "Indiquez le chiffre du nouveau statut a indiquer :" << std::endl;
 							std::cin >> choixStatut;
 							this->clear();
-							if ((*it).setStatut(choixStatut) == true)
+							if (commande.setStatut(choixStatut) == true)
 							{
 								std::cout << "Nouveau statut !" << std::endl;
-								std::cout << (*it) << std::endl;
+								std::cout << commande << std::endl;
 							} 
 							else
 							{
@@ -180,7 +182,8 @@ int Menu::gestionClient()
 	std::cout << ".	1 - Ajouter un produit au panier" << std::endl;
 	std::cout << ".	2 - Modifier la quantite d'un produit du panier" << std::endl;
 	std::cout << ".	3 - Supprimer un produit du panier" << std::endl;
-	std::cout << ".	4 - Vider le Panier" << std::endl;
+	std::cout << ".	4 - Afficher les informations du client" << std::endl;
+	std::cout << ".	5 - Vider le Panier" << std::endl;
 	std::cout << ".	Autre - Retour au Menu" << std::endl;
 	std::cout << "...................................................................................................." << std::endl;
 
@@ -278,6 +281,13 @@ int Menu::gestionClient()
 			break;
 		case 4:
 			clear();
+			std::cout << clientIdentifie << std::endl;
+			this->redirectionMenu();
+			Sleep(_tempsPause);
+			clear();
+			break;
+		case 5:
+			clear();
 			if (clientIdentifie.viderPanier())
 				std::cout << "Le panier du client a ete vide !" << std::endl;
 			else
@@ -314,7 +324,8 @@ int Menu::gestionMagasin()
 
 	std::string nomProduit, descriptionProduit;
 	float prixProduit;
-	int quantiteProduit;
+	int quantiteProduit, idClient;
+	char choix;
 
 	std::string prenomCLient, nomClient;
 
@@ -330,6 +341,9 @@ int Menu::gestionMagasin()
 			std::cout << "Entrez une quantite" << std::endl;
 			std::cin >> quantiteProduit;
 			_easystore.addProduit(Produit(nomProduit,descriptionProduit,prixProduit,quantiteProduit));
+			redirectionMenu();
+			Sleep(_tempsPause);
+			clear();
 			break;
 		case 2:
 			clear();
@@ -371,18 +385,37 @@ int Menu::gestionMagasin()
 			break;
 		case 4:
 			clear();
-			std::cout << "Entrez le nom du client" << std::endl;
-			std::cin >> nomClient;
-			if (_easystore.trouverClient(nomClient) == 0)
-			{
-				clear();
-				std::cout << "Erreur lors de la recherche !" << std::endl;
-			}
-			else
-			{
-				clear();
-				std::cout << "Le client que vous avez recherche a l'identidiant : " << _easystore.trouverClient(nomClient) << std::endl;
-			}
+			std::cout << "Voulez effectuer une recherche par identifiant ou par le nom du client ? I/N" << std::endl;
+			std::cin >> choix;
+			switch(choix) {
+						case 'i': case 'I':
+							std::cout << "Entrez l'identifiant du client" << std::endl;
+							std::cin >> idClient;
+							clear();
+							if (_easystore.trouverClient(idClient) == 0)
+								std::cout << "Erreur lors de la recherche !" << std::endl;
+							else
+							{
+								std::cout << "Voici les informations du client : " << std::endl;
+								std::cout << _easystore.getClient(_easystore.trouverClient(idClient)) << std::endl;
+							}
+							break;
+						case 'n': case 'N': // Impossible d'afficher les informations du client quand le nom est correct
+							/*std::cout << "Entrez le nom du client" << std::endl;
+							std::cin >> nomClient;
+							clear();
+							if (_easystore.trouverClient(nomClient) == 0)
+								std::cout << "Erreur lors de la recherche !" << std::endl;
+							else
+								std::cout << "Le client que vous avez recherche a l'identidiant : " << _easystore.trouverClient(nomClient) << std::endl;
+								std::cout << "Voici les informations du client : " << std::endl;
+								std::cout << _easystore.getClient(_easystore.trouverClient(idClient)) << std::endl;
+							*/
+							std::cout << "Nous sommes desoles mais il est impossible d'effectuer une recherche par un nom pour le moment." << std::endl;
+							break;
+						default:
+							std::cout << "Choix incorrect !" << std::endl;
+					}
 			redirectionMenu();
 			Sleep(_tempsPause);
 			clear();
@@ -410,12 +443,14 @@ int Menu::gestionMagasin()
 		case 6:
 			clear();
 			_easystore.afficheClients();
+			redirectionMenu();
 			Sleep(_tempsPause);
 			clear();
 			break;
 		case 7:
 			clear();
 			_easystore.afficheProduits();
+			redirectionMenu();
 			Sleep(_tempsPause);
 			clear();
 			break;
