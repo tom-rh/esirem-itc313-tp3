@@ -2,7 +2,7 @@
 #include "Produit.h"
 #include <windows.h> 
 
-Menu::Menu() : _navigation(0), _exit(false), _tempsPause(5000), _easystore(Magasin("easystore"))
+Menu::Menu() : _navigation(0), _exit(false), _tempsPause(1000), _easystore(Magasin("easystore"))
 {
 	Client c1 = Client("Tom","Roth");
 	_easystore.addClient(c1);
@@ -12,7 +12,10 @@ Menu::Menu() : _navigation(0), _exit(false), _tempsPause(5000), _easystore(Magas
 	std::cout << p1 << std::endl;
 	_easystore.afficheClients();
 	_easystore.afficheProduits();
-	Sleep(_tempsPause);
+	Client &c3 = _easystore.getClient(1);
+	c3.ajouterProduitPanier(p1);
+	_easystore.validerCommande(1);
+	Sleep(10000);
 }
 
 void Menu::clear()
@@ -100,7 +103,7 @@ int Menu::gestionCommande()
 			std::cin >> numeroCommande;
 			this->clear();
 			for (Commande &commande : _easystore.getCommandes()) {
-				if ( numeroCommande == commande.getId()){
+				if (numeroCommande == commande.getId()){
 					char choix;
 					std::cout << commande << std::endl;
 					std::cout << std::endl;
@@ -174,7 +177,7 @@ int Menu::gestionClient()
 
 	int idProduit = 0, quantiteProduit = 0;
 	bool produitTouve = false;
-	Client clientIdentifie = _easystore.getClient(idClient);
+	Client &clientIdentifie = _easystore.getClient(idClient);
 
 	std::cout << "...................................................................................................." << std::endl;
 	std::cout << ".	GESTION CLIENT - ID " << clientIdentifie.getId() << std::endl;
