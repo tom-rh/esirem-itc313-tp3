@@ -3,10 +3,10 @@
 
 int Commande::_debutId=1;
 
-Commande::Commande(Client client) :
+Commande::Commande(Client &client) :
 	_id(_debutId++), _client(client), _produitsAchetes(client.getPanier()), _statut(0)
 {
-
+	
 }
 
 int Commande::getId() const
@@ -34,16 +34,16 @@ std::string Commande::getDescriptionStatut() const
     switch (_statut)
     {
     case 0:
-        return "Validée";
+        return "Validee";
         break;
     case 1:
-        return "Préparée";
+        return "Preparee";
         break;
     case 2:
-        return "Expédiée";
+        return "Expediee";
         break;
     case 3:
-        return "Livrée";
+        return "Livree";
         break;
     default:
         return "Erreur";
@@ -67,7 +67,7 @@ bool Commande::setStatut(int statut)
 std::ostream& operator<<(std::ostream& os, Commande& commande)
 {
     os << "Commande :" << std::endl;
-    os << "Statut :" << commande.getDescriptionStatut() << std::endl;
+    os << "Statut : " << commande.getDescriptionStatut() << std::endl;
 	os << "Client : " << commande.getClient() << std::endl;
     os << "Produits achetes : " << std::endl;
     int compteur = 1;

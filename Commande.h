@@ -11,7 +11,7 @@ private:
     std::vector<Produit> _produitsAchetes;
     int _statut;
 public:
-    Commande(Client client);
+    Commande(Client &client);
     int getId() const;
     Client& getClient();
     std::vector<Produit>& getProduitsAchetes();
