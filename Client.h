@@ -18,7 +18,7 @@ public:
     std::string getPrenom() const;
     std::string getNom() const;
     std::vector<Produit> getPanier() const;
-    bool ajouterProduitPanier(Produit produit);
+    bool ajouterProduitPanier(Produit &produit);
     bool viderPanier();
     bool modifierQuantiteProduitPanier(int idProduit, int quantite);
     bool supprimerProduitPanier(int idProduit);

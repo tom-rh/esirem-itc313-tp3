@@ -29,7 +29,7 @@ std::vector<Produit> Client::getPanier() const
     return _panier;
 }
 
-bool Client::ajouterProduitPanier(Produit produit)
+bool Client::ajouterProduitPanier(Produit &produit)
 {
     _panier.push_back(produit);
 	return true;
