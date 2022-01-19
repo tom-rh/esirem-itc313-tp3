@@ -14,12 +14,12 @@ int Commande::getId() const
     return _id;
 }
 
-Client Commande::getClient() const
+Client& Commande::getClient()
 {
     return _client;
 }
 
-std::vector<Produit> Commande::getProduitsAchetes() const
+std::vector<Produit>& Commande::getProduitsAchetes()
 {
     return _produitsAchetes;
 }
@@ -64,18 +64,18 @@ bool Commande::setStatut(int statut)
     }
 }
 
-std::ostream& operator<<(std::ostream& os, const Commande& commande)
+std::ostream& operator<<(std::ostream& os, Commande& commande)
 {
     os << "Commande :" << std::endl;
     os << "Statut :" << commande.getDescriptionStatut() << std::endl;
 	os << "Client : " << commande.getClient() << std::endl;
     os << "Produits achetes : " << std::endl;
     int compteur = 1;
-    for (auto i = commande.getProduitsAchetes().begin(); i != commande.getProduitsAchetes().end(); i++)
+    for (Produit &produit : commande.getProduitsAchetes())
     {
         os << std::endl;
         os << "Produit " << compteur << std::endl;
-        os << (*i) << std::endl;
+        os << produit << std::endl;
         compteur++;
     }
 	return os;

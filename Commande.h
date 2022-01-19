@@ -13,11 +13,11 @@ private:
 public:
     Commande(Client client);
     int getId() const;
-    Client getClient() const;
-    std::vector<Produit> getProduitsAchetes() const;
+    Client& getClient();
+    std::vector<Produit>& getProduitsAchetes();
     int getStatut() const;
     std::string getDescriptionStatut() const;
     bool setStatut(int statut);
 };
 
-std::ostream& operator<<(std::ostream& os, const Commande& commande);
+std::ostream& operator<<(std::ostream& os, Commande& commande);
