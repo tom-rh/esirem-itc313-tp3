@@ -17,22 +17,24 @@ private :
 public :
 	Magasin(std::string nom);
 	bool addProduit(Produit produit);
-	void afficheProduits() const;
-	int trouverProduit(std::string recherche) const;
-	bool changerQuantite(int quantite, std::string recherche);
+	void afficheProduits();
+	int trouverProduit(std::string nom);
+	bool changerQuantite(int quantite, std::string nom);
 	bool addClient(Client client);
-	void afficheClients() const;
-	int trouverClient(std::string recherche) const;
+	void afficheClients();
+	int trouverClient(std::string nom);
+	int trouverClient(int identifiant);
 	bool addProduitToPanier(int idProduit, int idClient);
 	bool suprProduitToPanier(int idProduit, int idClient);
 	bool qtitProduitToPanier(int idProduit, int idClient, int quantite);
 	bool validerCommande(int idClient);
 	bool setStatutCommande(int idCommande, int statut);
-	void afficheCommandes() const;
-	void afficheCommandesClient(int idClient) const;
+	void afficheCommandes();
+	void afficheCommandesClient(int idClient);
 	std::vector<Commande> getCommandes() const;
 	std::vector<Client> getClients() const;
 	std::vector<Produit> getProduits() const;
 	Client getClient(int idClient);
+	Produit getProduit(int idProduit);
 };
 
