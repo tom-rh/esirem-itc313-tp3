@@ -68,7 +68,10 @@ std::ostream& operator<<(std::ostream& os, Commande& commande)
 {
     os << "Commande :" << std::endl;
     os << "Statut : " << commande.getDescriptionStatut() << std::endl;
-	os << "Client : " << commande.getClient() << std::endl;
+	os << "Client : " << std::endl;
+	os << "ID Client : " << commande.getClient().getId() << std::endl;
+	os << "Prenom Client : " << commande.getClient().getPrenom() << std::endl;
+	os << "Nom Client : " << commande.getClient().getNom() << std::endl;
     os << "Produits achetes : " << std::endl;
     int compteur = 1;
     for (Produit &produit : commande.getProduitsAchetes())
