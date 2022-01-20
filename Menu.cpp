@@ -14,7 +14,9 @@ Menu::Menu() : _navigation(0), _exit(false), _tempsPause(1000), _easystore(Magas
 	_easystore.afficheProduits();
 	Client &c3 = _easystore.getClient(1);
 	c3.ajouterProduitPanier(p1);
-	_easystore.validerCommande(1);
+	std::cout << c3 << std::endl;
+	c3.viderPanier();
+	std::cout << c3 << std::endl;
 	Sleep(10000);
 }
 
@@ -112,6 +114,14 @@ int Menu::gestionCommande()
 					switch(choix) {
 						case 'o': case 'O':
 							int choixStatut;
+							std::cout << "Statut actuel : " << commande.getDescriptionStatut() << std::endl;
+							std::cout << std::endl;
+							std::cout << "Statuts disponibles :" << std::endl;
+							std::cout << "0 - Validee" << std::endl;
+							std::cout << "1 - Preparee" << std::endl;
+							std::cout << "2 - Expediee" << std::endl;
+							std::cout << "3 - Livree" << std::endl;
+							std::cout << std::endl;
 							std::cout << "Indiquez le chiffre du nouveau statut a indiquer :" << std::endl;
 							std::cin >> choixStatut;
 							this->clear();
@@ -134,6 +144,8 @@ int Menu::gestionCommande()
 				else
 					std::cout << "Erreur avec le numero de commande" << std::endl;
 			}
+			clear();
+			redirectionMenu();
 			Sleep(_tempsPause);
 			clear();
 			break;
@@ -186,7 +198,7 @@ int Menu::gestionClient()
 	std::cout << ".	2 - Modifier la quantite d'un produit du panier" << std::endl;
 	std::cout << ".	3 - Supprimer un produit du panier" << std::endl;
 	std::cout << ".	4 - Afficher les informations du client" << std::endl;
-	std::cout << ".	5 - Vider le Panier" << std::endl;
+	std::cout << ".	5 - Vider le panier" << std::endl;
 	std::cout << ".	Autre - Retour au Menu" << std::endl;
 	std::cout << "...................................................................................................." << std::endl;
 
