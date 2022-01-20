@@ -119,15 +119,17 @@ bool Magasin::qtitProduitToPanier(int idProduit, int idClient, int quantite)
 
 bool Magasin::validerCommande(int idClient)
 {
-	// TODO Diminuer la quantité du  produit dans le magasin
 	for (Client &client : _clients) {
 		if ( idClient == client.getId())
 		{
 			_commandes.push_back(Commande(client));
 			for (Produit &produit : client.getPanier())
 			{
-				std::cout << produit.getQuantite() << std::endl;
-				changerQuantite((produit.getQuantite()-1), produit.getNomProduit());
+				for (Produit &produitMagasin : _produits)
+				{
+					if (produit.getId() == produitMagasin.getId())
+						changerQuantite((produitMagasin.getQuantite()-produit.getQuantite()), produit.getNomProduit());
+				}
 			}
 			client.viderPanier();
 			return true;
