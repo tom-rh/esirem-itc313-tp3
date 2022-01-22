@@ -2,22 +2,16 @@
 #include "Produit.h"
 #include <windows.h> 
 
-Menu::Menu() : _navigation(0), _exit(false), _tempsPause(1000), _easystore(Magasin("easystore"))
+Menu::Menu() : _navigation(0), _exit(false), _tempsPause(3000), _easystore(Magasin("easystore"))
 {
 	Client c1 = Client("Tom","Roth");
 	_easystore.addClient(c1);
-	std::cout << c1 << std::endl;
 	Produit p1 = Produit("XBOX", "Console", 5, 25);
 	_easystore.addProduit(p1);
 	std::cout << p1 << std::endl;
-	_easystore.afficheClients();
-	_easystore.afficheProduits();
 	Client &c3 = _easystore.getClient(1);
 	c3.ajouterProduitPanier(p1);
-	std::cout << c3 << std::endl;
 	c3.viderPanier();
-	std::cout << c3 << std::endl;
-	Sleep(10000);
 }
 
 void Menu::clear()
@@ -340,7 +334,6 @@ int Menu::gestionMagasin()
 	std::string nomProduit, descriptionProduit;
 	float prixProduit;
 	int quantiteProduit, idClient;
-	char choix;
 
 	std::string prenomCLient, nomClient;
 
@@ -400,37 +393,16 @@ int Menu::gestionMagasin()
 			break;
 		case 4:
 			clear();
-			std::cout << "Voulez effectuer une recherche par identifiant ou par le nom du client ? I/N" << std::endl;
-			std::cin >> choix;
-			switch(choix) {
-						case 'i': case 'I':
-							std::cout << "Entrez l'identifiant du client" << std::endl;
-							std::cin >> idClient;
-							clear();
-							if (_easystore.trouverClient(idClient) == 0)
-								std::cout << "Erreur lors de la recherche !" << std::endl;
-							else
-							{
-								std::cout << "Voici les informations du client : " << std::endl;
-								std::cout << _easystore.getClient(_easystore.trouverClient(idClient)) << std::endl;
-							}
-							break;
-						case 'n': case 'N': // Impossible d'afficher les informations du client quand le nom est correct
-							/*std::cout << "Entrez le nom du client" << std::endl;
-							std::cin >> nomClient;
-							clear();
-							if (_easystore.trouverClient(nomClient) == 0)
-								std::cout << "Erreur lors de la recherche !" << std::endl;
-							else
-								std::cout << "Le client que vous avez recherche a l'identidiant : " << _easystore.trouverClient(nomClient) << std::endl;
-								std::cout << "Voici les informations du client : " << std::endl;
-								std::cout << _easystore.getClient(_easystore.trouverClient(idClient)) << std::endl;
-							*/
-							std::cout << "Nous sommes desoles mais il est impossible d'effectuer une recherche par un nom pour le moment." << std::endl;
-							break;
-						default:
-							std::cout << "Choix incorrect !" << std::endl;
-					}
+			std::cout << "Entrez l'identifiant du client" << std::endl;
+			std::cin >> idClient;
+			clear();
+			if (_easystore.trouverClient(idClient) == 0)
+				std::cout << "Erreur lors de la recherche !" << std::endl;
+			else
+			{
+				std::cout << "Voici les informations du client : " << std::endl;
+				std::cout << _easystore.getClient(_easystore.trouverClient(idClient)) << std::endl;
+			}
 			redirectionMenu();
 			Sleep(_tempsPause);
 			clear();
