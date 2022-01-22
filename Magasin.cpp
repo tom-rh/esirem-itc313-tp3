@@ -50,16 +50,6 @@ void Magasin::afficheClients()
     }
 }
 
-int Magasin::trouverClient(std::string nom)
-{
-	for (Client &client : _clients)
-	{
-		if (client.getNom() == nom)
-			return client.getId();
-	}
-	return 0; // Error - Ne fonctionne pas correctement
-}
-
 int Magasin::trouverClient(int identifiant)
 {
 	for (Client &client : _clients)
@@ -67,7 +57,7 @@ int Magasin::trouverClient(int identifiant)
 		if (client.getId() == identifiant)
 			return client.getId();
 	}
-	return 0; // Error - Ne fonctionne pas correctement
+	return 0; // Aucun client trouvé
 }
 
 bool Magasin::addProduitToPanier(int idProduit, int idClient)
